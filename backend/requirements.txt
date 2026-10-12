@@ -1,0 +1,31 @@
+# Core API
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.1
+pydantic>=2.6.1
+python-multipart>=0.0.9
+
+# Data & ML
+pandas>=2.2.3
+numpy>=2.0.0
+scikit-learn>=1.4.2
+xgboost>=2.0.3
+joblib>=1.3.2
+pulp>=2.7.0
+
+# --- NEW: Scrapers & HTTP ---
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=5.1.0
+
+# --- NEW: Background Scheduler ---
+APScheduler>=3.10.4
+pytz>=2024.1
+
+# --- NEW: Weather & Event APIs ---
+# OpenWeatherMap uses plain requests (no extra library needed)
+# BookMyShow / Paytm Insider use requests + BS4
+
+# --- NEW: Advanced ML ---
+lightgbm>=4.3.0
+# torch-geometric (ST-GNN) is optional – install separately if GPU available
+# pip install torch torch-geometric

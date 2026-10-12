@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0f172a;  /* slate-900 */
+  color: #e2e8f0;             /* slate-200 */
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: #0f172a;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1e293b;  /* slate-800 */
+  color: #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-popup-tip {
+  background: #1e293b;
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px;
+}
+
+.leaflet-control-zoom a {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+/* Corridor glow lines */
+.corridor-line-red { filter: drop-shadow(0 0 6px rgba(227, 30, 36, 0.6)); }
+.corridor-line-blue { filter: drop-shadow(0 0 6px rgba(0, 122, 187, 0.6)); }
+.corridor-line-green { filter: drop-shadow(0 0 6px rgba(0, 152, 70, 0.6)); }
+
+/* Pulse animation for critical stations */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.8); opacity: 0.3; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.station-pulse {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.station-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Train marker */
+.train-marker {
+  transition: transform 0.3s linear;
+}
+
+/* Alert badge */
+@keyframes alert-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.alert-badge {
+  animation: alert-blink 1.5s ease-in-out infinite;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Range input styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #334155;
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2px solid #0f172a;
+}
+
+/* Recharts overrides for dark theme */
+.recharts-text {
+  fill: #94a3b8 !important;
+}
+.recharts-cartesian-grid line {
+  stroke: #1e293b !important;
+}

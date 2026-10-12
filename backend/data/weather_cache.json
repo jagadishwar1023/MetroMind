@@ -1,0 +1,71 @@
+{
+  "weather_code": 0,
+  "temperature": 28.5,
+  "forecast": [
+    {
+      "hour_offset": 0.0,
+      "hour": 5,
+      "weather_code": 0,
+      "temperature": 28.5,
+      "description": "Partly cloudy",
+      "rain_probability": 0.05
+    },
+    {
+      "hour_offset": 3.0,
+      "hour": 8,
+      "weather_code": 0,
+      "temperature": 29.0,
+      "description": "Clear sky",
+      "rain_probability": 0.02
+    },
+    {
+      "hour_offset": 6.0,
+      "hour": 11,
+      "weather_code": 1,
+      "temperature": 26.5,
+      "description": "Light rain",
+      "rain_probability": 0.75
+    },
+    {
+      "hour_offset": 9.0,
+      "hour": 14,
+      "weather_code": 1,
+      "temperature": 25.0,
+      "description": "Moderate rain",
+      "rain_probability": 0.85
+    },
+    {
+      "hour_offset": 12.0,
+      "hour": 17,
+      "weather_code": 0,
+      "temperature": 27.0,
+      "description": "Scattered clouds",
+      "rain_probability": 0.2
+    },
+    {
+      "hour_offset": 15.0,
+      "hour": 20,
+      "weather_code": 3,
+      "temperature": 30.0,
+      "description": "Haze",
+      "rain_probability": 0.1
+    },
+    {
+      "hour_offset": 18.0,
+      "hour": 23,
+      "weather_code": 0,
+      "temperature": 31.5,
+      "description": "Clear sky",
+      "rain_probability": 0.02
+    },
+    {
+      "hour_offset": 21.0,
+      "hour": 2,
+      "weather_code": 0,
+      "temperature": 29.5,
+      "description": "Few clouds",
+      "rain_probability": 0.05
+    }
+  ],
+  "timestamp": "2026-10-12T10:39:51.037903"
+}

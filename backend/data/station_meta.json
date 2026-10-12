@@ -1,0 +1,689 @@
+[
+  {
+    "stop_id": "MYP",
+    "stop_name": "Miyapur",
+    "stop_lat": 17.4965452,
+    "stop_lon": 78.3730262,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 15000,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "JNT",
+    "stop_name": "JNTU College",
+    "stop_lat": 17.4987037,
+    "stop_lon": 78.3888668,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8925,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "KPH",
+    "stop_name": "KPHB Colony",
+    "stop_lat": 17.4937602,
+    "stop_lon": 78.4018258,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 11224,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "KUK",
+    "stop_name": "Kukatpally",
+    "stop_lat": 17.4849033,
+    "stop_lon": 78.4117896,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 6812,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "BLR",
+    "stop_name": "Balanagar",
+    "stop_lat": 17.4767464,
+    "stop_lon": 78.4221082,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 9886,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "MSP",
+    "stop_name": "Moosapet",
+    "stop_lat": 17.4718855,
+    "stop_lon": 78.4261182,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 9694,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "BTN",
+    "stop_name": "Bharat Nagar",
+    "stop_lat": 17.4629092,
+    "stop_lon": 78.4305364,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 5702,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "ERA",
+    "stop_name": "Erragadda",
+    "stop_lat": 17.4570487,
+    "stop_lon": 78.4335811,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 9215,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "ESI",
+    "stop_name": "ESI Hospital",
+    "stop_lat": 17.4486969,
+    "stop_lon": 78.4376283,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 9544,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "SRN",
+    "stop_name": "S. R. Nagar",
+    "stop_lat": 17.4431205,
+    "stop_lon": 78.4407241,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8166,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "AME",
+    "stop_name": "Ameerpet",
+    "stop_lat": 17.4357214,
+    "stop_lon": 78.4447933,
+    "corridors": [
+      "RED",
+      "BLUE"
+    ],
+    "base_daily_passengers": 35000,
+    "it_density": 0.2,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "PUN",
+    "stop_name": "Panjagutta",
+    "stop_lat": 17.4289362,
+    "stop_lon": 78.450955,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 10351,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "IRM",
+    "stop_name": "Erra Manzil",
+    "stop_lat": 17.4202292,
+    "stop_lon": 78.4563489,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8344,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "KHA",
+    "stop_name": "Khairatabad",
+    "stop_lat": 17.4116323,
+    "stop_lon": 78.4608678,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 10951,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "LKP",
+    "stop_name": "Lakdi-ka-pul",
+    "stop_lat": 17.4040433,
+    "stop_lon": 78.4649442,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 11744,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "ASM",
+    "stop_name": "Assembly",
+    "stop_lat": 17.3979907,
+    "stop_lon": 78.4708797,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8661,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "NAM",
+    "stop_name": "Nampally",
+    "stop_lat": 17.392222,
+    "stop_lon": 78.4701612,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 11373,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "GAB",
+    "stop_name": "Gandhi Bhavan",
+    "stop_lat": 17.3858253,
+    "stop_lon": 78.4733347,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 10053,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "OMC",
+    "stop_name": "Osmania Medical College",
+    "stop_lat": 17.3820769,
+    "stop_lon": 78.4817011,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 6758,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "MGB",
+    "stop_name": "Mahatma Gandhi Bus Station",
+    "stop_lat": 17.3797886,
+    "stop_lon": 78.4861571,
+    "corridors": [
+      "RED",
+      "GREEN"
+    ],
+    "base_daily_passengers": 28000,
+    "it_density": 0.2,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "MKL",
+    "stop_name": "Malakpet",
+    "stop_lat": 17.3771888,
+    "stop_lon": 78.4939356,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8600,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "NEM",
+    "stop_name": "New Market",
+    "stop_lat": 17.3734454,
+    "stop_lon": 78.5031791,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 5991,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "MSB",
+    "stop_name": "Musarambagh",
+    "stop_lat": 17.3710873,
+    "stop_lon": 78.5119545,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8288,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "DSN",
+    "stop_name": "Dilsukh Nagar",
+    "stop_lat": 17.3685493,
+    "stop_lon": 78.5253873,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 7835,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "CHP",
+    "stop_name": "Chaitanyapuri",
+    "stop_lat": 17.3681501,
+    "stop_lon": 78.5381335,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 11806,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "VOM",
+    "stop_name": "Victoria Memorial",
+    "stop_lat": 17.3618565,
+    "stop_lon": 78.5439622,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8952,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "LBN",
+    "stop_name": "L. B. Nagar",
+    "stop_lat": 17.349846,
+    "stop_lon": 78.5479412,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 15000,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "SUB",
+    "stop_name": "Sultan Bazar",
+    "stop_lat": 17.3844473,
+    "stop_lon": 78.4840241,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 6146,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "NAR",
+    "stop_name": "Narayanaguda",
+    "stop_lat": 17.3943658,
+    "stop_lon": 78.4899578,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 6986,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "CDP",
+    "stop_name": "Chikkadpally",
+    "stop_lat": 17.4003634,
+    "stop_lon": 78.4948964,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 9409,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "RTC",
+    "stop_name": "RTC Cross Roads",
+    "stop_lat": 17.4070321,
+    "stop_lon": 78.4968023,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 6065,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "MSH",
+    "stop_name": "Musheerabad",
+    "stop_lat": 17.4178744,
+    "stop_lon": 78.4995051,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 8513,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "GNH",
+    "stop_name": "Gandhi Hospital",
+    "stop_lat": 17.4255155,
+    "stop_lon": 78.501956,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 6843,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "SCR",
+    "stop_name": "Secunderabad West",
+    "stop_lat": 17.4338034,
+    "stop_lon": 78.4995181,
+    "corridors": [
+      "GREEN"
+    ],
+    "base_daily_passengers": 6471,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "JBS",
+    "stop_name": "JBS Parade Ground",
+    "stop_lat": 17.4444775,
+    "stop_lon": 78.497584,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 22000,
+    "it_density": 0.2,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "NAG",
+    "stop_name": "Nagole",
+    "stop_lat": 17.3907683,
+    "stop_lon": 78.5588222,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 12000,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "UPL",
+    "stop_name": "Uppal",
+    "stop_lat": 17.4000665,
+    "stop_lon": 78.5601868,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 18000,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "STD",
+    "stop_name": "Stadium",
+    "stop_lat": 17.4074002,
+    "stop_lon": 78.5542531,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8167,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "NGR",
+    "stop_name": "NGRI",
+    "stop_lat": 17.4148264,
+    "stop_lon": 78.5463345,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 5413,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "HSG",
+    "stop_name": "Habsiguda",
+    "stop_lat": 17.42018,
+    "stop_lon": 78.540548,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 11350,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "TAR",
+    "stop_name": "Tarnaka",
+    "stop_lat": 17.4274418,
+    "stop_lon": 78.5300079,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 7450,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "MET",
+    "stop_name": "Mettuguda",
+    "stop_lat": 17.4355207,
+    "stop_lon": 78.5195754,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 11291,
+    "it_density": 0.1,
+    "college_density": 0.85
+  },
+  {
+    "stop_id": "SEC_E",
+    "stop_name": "Secunderabad East",
+    "stop_lat": 17.4357184,
+    "stop_lon": 78.5054623,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 8331,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "PRG",
+    "stop_name": "Parade Ground",
+    "stop_lat": 17.4431943,
+    "stop_lon": 78.4974687,
+    "corridors": [
+      "BLUE",
+      "GREEN"
+    ],
+    "base_daily_passengers": 9418,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "PAR",
+    "stop_name": "Paradise",
+    "stop_lat": 17.4434668,
+    "stop_lon": 78.4862436,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 7460,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "ROP",
+    "stop_name": "Rasoolpura",
+    "stop_lat": 17.443612,
+    "stop_lon": 78.4764053,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 10978,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "PRN",
+    "stop_name": "Prakash Nagar",
+    "stop_lat": 17.4448889,
+    "stop_lon": 78.4658749,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 5008,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "BEG",
+    "stop_name": "Begumpet",
+    "stop_lat": 17.4375661,
+    "stop_lon": 78.4569341,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 9789,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "MUN",
+    "stop_name": "Madhura Nagar",
+    "stop_lat": 17.4369652,
+    "stop_lon": 78.4390993,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 7842,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "YUG",
+    "stop_name": "Yusufguda",
+    "stop_lat": 17.4351132,
+    "stop_lon": 78.4273216,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 7856,
+    "it_density": 0.9,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "JR5",
+    "stop_name": "Road No 5 Jubilee Hills",
+    "stop_lat": 17.4300489,
+    "stop_lon": 78.4232069,
+    "corridors": [
+      "RED"
+    ],
+    "base_daily_passengers": 7268,
+    "it_density": 0.1,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "JCP",
+    "stop_name": "Jubilee Hills Checkpost",
+    "stop_lat": 17.4281969,
+    "stop_lon": 78.4137145,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 6042,
+    "it_density": 0.9,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "PED",
+    "stop_name": "Peddamma Gudi",
+    "stop_lat": 17.4306512,
+    "stop_lon": 78.4083721,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 9417,
+    "it_density": 0.9,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "MAD",
+    "stop_name": "Madhapur",
+    "stop_lat": 17.4372637,
+    "stop_lon": 78.4004257,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 6806,
+    "it_density": 0.9,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "DGC",
+    "stop_name": "Durgam Cheruvu",
+    "stop_lat": 17.4429466,
+    "stop_lon": 78.3875721,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 6643,
+    "it_density": 0.9,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "HTC",
+    "stop_name": "HITEC City",
+    "stop_lat": 17.4490055,
+    "stop_lon": 78.3831376,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 32000,
+    "it_density": 0.9,
+    "college_density": 0.1
+  },
+  {
+    "stop_id": "RDG",
+    "stop_name": "Raidurg",
+    "stop_lat": 17.442,
+    "stop_lon": 78.3772038,
+    "corridors": [
+      "BLUE"
+    ],
+    "base_daily_passengers": 20000,
+    "it_density": 0.9,
+    "college_density": 0.1
+  }
+]
