@@ -464,6 +464,25 @@ def get_weather_for_date(target_date: date | str) -> Dict[str, Any]:
     today = date.today()
 
     if target_date == today:
+        try:
+            from scrapers.weather_client import WeatherClient
+            client = WeatherClient()
+            curr = client.fetch_current()
+            code = curr.get('weather_code', 0)
+            temp = round(float(curr.get('temperature', 30.0)), 1)
+            desc = curr.get('description', 'Clear sky')
+            is_rain = code in [1, 4] or 'rain' in desc.lower() or 'thunder' in desc.lower()
+            return {
+                'weather_code': code,
+                'temperature': temp,
+                'description': desc,
+                'source': 'live_openweather',
+                'is_rain': is_rain,
+                'rain_surge_multiplier': 1.25 if is_rain else 1.0,
+            }
+        except Exception:
+            pass
+
         from scheduler.background_worker import WeatherCache
         cached = WeatherCache.load()
         code = cached.get('weather_code', 0)
@@ -476,6 +495,18 @@ def get_weather_for_date(target_date: date | str) -> Dict[str, Any]:
             'is_rain': code in [1, 4],
             'rain_surge_multiplier': 1.25 if code in [1, 4] else 1.0,
         }
+
+    # If within next 5 days, use real OpenWeather forecast
+    days_ahead = (target_date - today).days
+    if 0 < days_ahead <= 5:
+        try:
+            from scrapers.weather_client import WeatherClient
+            client = WeatherClient()
+            forecast_item = client.get_forecast_for_date(target_date)
+            if forecast_item:
+                return forecast_item
+        except Exception:
+            pass
 
     # Deterministic weather pattern based on calendar date day
     day_num = target_date.day

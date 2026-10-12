@@ -1,71 +1,79 @@
 {
   "weather_code": 0,
-  "temperature": 28.5,
+  "temperature": 33.42,
   "forecast": [
     {
-      "hour_offset": 0.0,
-      "hour": 6,
-      "weather_code": 0,
-      "temperature": 28.5,
-      "description": "Partly cloudy",
-      "rain_probability": 0.05
-    },
-    {
-      "hour_offset": 3.0,
+      "hour_offset": 1.7,
       "hour": 9,
       "weather_code": 0,
-      "temperature": 29.0,
+      "temperature": 32.89,
       "description": "Clear sky",
-      "rain_probability": 0.02
+      "rain_probability": 0.0
     },
     {
-      "hour_offset": 6.0,
+      "hour_offset": 4.7,
       "hour": 12,
-      "weather_code": 1,
-      "temperature": 26.5,
-      "description": "Light rain",
-      "rain_probability": 0.75
+      "weather_code": 0,
+      "temperature": 31.7,
+      "description": "Clear sky",
+      "rain_probability": 0.0
     },
     {
-      "hour_offset": 9.0,
+      "hour_offset": 7.7,
       "hour": 15,
-      "weather_code": 1,
-      "temperature": 25.0,
-      "description": "Moderate rain",
-      "rain_probability": 0.85
+      "weather_code": 0,
+      "temperature": 27.04,
+      "description": "Clear sky",
+      "rain_probability": 0.0
     },
     {
-      "hour_offset": 12.0,
+      "hour_offset": 10.7,
       "hour": 18,
       "weather_code": 0,
-      "temperature": 27.0,
-      "description": "Scattered clouds",
-      "rain_probability": 0.2
+      "temperature": 26.02,
+      "description": "Clear sky",
+      "rain_probability": 0.0
     },
     {
-      "hour_offset": 15.0,
+      "hour_offset": 13.7,
       "hour": 21,
-      "weather_code": 3,
-      "temperature": 30.0,
-      "description": "Haze",
-      "rain_probability": 0.1
+      "weather_code": 0,
+      "temperature": 25.35,
+      "description": "Clear sky",
+      "rain_probability": 0.0
     },
     {
-      "hour_offset": 18.0,
+      "hour_offset": 16.7,
       "hour": 0,
       "weather_code": 0,
-      "temperature": 31.5,
+      "temperature": 23.62,
       "description": "Clear sky",
-      "rain_probability": 0.02
+      "rain_probability": 0.0
     },
     {
-      "hour_offset": 21.0,
+      "hour_offset": 19.7,
       "hour": 3,
       "weather_code": 0,
-      "temperature": 29.5,
+      "temperature": 28.98,
+      "description": "Clear sky",
+      "rain_probability": 0.0
+    },
+    {
+      "hour_offset": 22.7,
+      "hour": 6,
+      "weather_code": 0,
+      "temperature": 32.77,
       "description": "Few clouds",
-      "rain_probability": 0.05
+      "rain_probability": 0.0
+    },
+    {
+      "hour_offset": 25.7,
+      "hour": 9,
+      "weather_code": 0,
+      "temperature": 32.11,
+      "description": "Scattered clouds",
+      "rain_probability": 0.0
     }
   ],
-  "timestamp": "2026-10-12T12:18:04.273449"
+  "timestamp": "2026-10-12T12:45:17.205862"
 }

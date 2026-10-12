@@ -5,9 +5,16 @@ from typing import Optional, List, Union, Dict, Any
 import json
 import urllib.parse
 import pandas as pd
-from pathlib import Path
 from datetime import datetime, date
 import sys, os
+from pathlib import Path
+try:
+    from dotenv import load_dotenv
+    _env_file = Path(__file__).resolve().parent / ".env"
+    if _env_file.exists():
+        load_dotenv(_env_file)
+except Exception:
+    pass
 
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
@@ -66,6 +73,21 @@ def startup():
         print('Anomaly detector loaded.')
     except Exception as e:
         print(f'Anomaly detector not loaded: {e}')
+    # Initialize live weather from OpenWeatherMap
+    try:
+        from scrapers.weather_client import WeatherClient
+        from scheduler.background_worker import WeatherCache
+        _wc = WeatherClient()
+        _curr = _wc.fetch_current()
+        _fore = _wc.fetch_forecast(hours=24)
+        WeatherCache.save(
+            weather_code=_curr.get('weather_code', 0),
+            temperature=_curr.get('temperature', 30.0),
+            forecast_list=_fore
+        )
+        print(f"Live weather initialized: {_curr.get('temperature')}°C, {_curr.get('description')}")
+    except Exception as _we:
+        print(f"Weather initial sync: {_we}")
     # Start background scheduler
     try:
         from scheduler.background_worker import start_scheduler
@@ -469,6 +491,16 @@ def optimize_frequency(req: OptimizeRequest):
 @app.get('/venues')
 def list_venues():
     return get_venues()
+
+@app.get('/')
+def root():
+    return {
+        'status': 'online',
+        'service': 'MetroMind Transit Demand & Headway Optimization API',
+        'version': '2.0.0',
+        'health': '/health',
+        'docs': '/docs'
+    }
 
 @app.get('/health')
 def health():

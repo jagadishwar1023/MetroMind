@@ -33,11 +33,16 @@ import requests
 # ---------------------------------------------------------------------------
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# Configuration
-# ---------------------------------------------------------------------------
+try:
+    from dotenv import load_dotenv
+    _env_file = Path(__file__).resolve().parent.parent / ".env"
+    if _env_file.exists():
+        load_dotenv(_env_file)
+except Exception:
+    pass
+
 OPENWEATHER_API_KEY: str = os.getenv("OPENWEATHER_API_KEY", "")
-CITY_ID: int = 1265782          # OpenWeatherMap city ID for Hyderabad, IN
+CITY_ID: int = 1269843          # OpenWeatherMap city ID for Hyderabad, IN
 BASE_URL: str = "https://api.openweathermap.org/data/2.5"
 HTTP_TIMEOUT: int = 10          # seconds
 
@@ -100,13 +105,19 @@ class WeatherClient:
 
         try:
             url = f"{BASE_URL}/weather"
-            params = {"id": CITY_ID, "appid": self._api_key, "units": "metric"}
+            params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric"}
             resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
             resp.raise_for_status()
             return self._parse_current(resp.json())
         except Exception as exc:  # noqa: BLE001
-            logger.warning("fetch_current failed (%s); returning mock data.", exc)
-            return self._mock_weather()
+            logger.warning("fetch_current failed (%s); trying city id fallback...", exc)
+            try:
+                params = {"id": CITY_ID, "appid": self._api_key, "units": "metric"}
+                resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
+                resp.raise_for_status()
+                return self._parse_current(resp.json())
+            except Exception:
+                return self._mock_weather()
 
     def fetch_forecast(self, hours: int = 24) -> list[dict[str, Any]]:
         """
@@ -130,13 +141,66 @@ class WeatherClient:
         try:
             cnt = hours // 3 + 4   # extra slots for safety
             url = f"{BASE_URL}/forecast"
-            params = {"id": CITY_ID, "appid": self._api_key, "units": "metric", "cnt": cnt}
+            params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric", "cnt": cnt}
             resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
             resp.raise_for_status()
             return self._parse_forecast(resp.json(), hours)
         except Exception as exc:  # noqa: BLE001
             logger.warning("fetch_forecast failed (%s); returning mock data.", exc)
             return self._mock_forecast()
+
+    def get_forecast_for_date(self, target_date: Any) -> Optional[dict[str, Any]]:
+        """
+        Return the summarized weather forecast for a specific date from OpenWeather 5-day forecast.
+        """
+        if not self._api_key:
+            return None
+        if hasattr(target_date, "strftime"):
+            date_str = target_date.strftime("%Y-%m-%d")
+        else:
+            date_str = str(target_date)
+
+        try:
+            url = f"{BASE_URL}/forecast"
+            params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric"}
+            resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
+            resp.raise_for_status()
+            data = resp.json()
+            items = data.get("list", [])
+
+            # Match items starting with date_str
+            matching = [it for it in items if it.get("dt_txt", "").startswith(date_str)]
+            if not matching:
+                return None
+
+            temps = [it.get("main", {}).get("temp", 30.0) for it in matching]
+            avg_temp = round(sum(temps) / len(temps), 1)
+
+            # Check for rain / storms
+            rain_item = next((it for it in matching if any(w.get("main", "").lower() in ["rain", "thunderstorm", "drizzle"] for w in it.get("weather", []))), None)
+            if rain_item:
+                w_info = rain_item.get("weather", [{}])[0]
+                desc = w_info.get("description", "Showers").capitalize()
+                code = self._map_condition_to_code(w_info.get("main", "Rain"))
+                is_rain = True
+            else:
+                mid = matching[len(matching) // 2]
+                w_info = mid.get("weather", [{}])[0]
+                desc = w_info.get("description", "Clear sky").capitalize()
+                code = self._map_condition_to_code(w_info.get("main", "Clear"))
+                is_rain = False
+
+            return {
+                "weather_code": code,
+                "temperature": avg_temp,
+                "description": desc,
+                "source": "live_openweather_forecast",
+                "is_rain": is_rain,
+                "rain_surge_multiplier": 1.25 if is_rain else 1.0,
+            }
+        except Exception as exc:
+            logger.warning("get_forecast_for_date failed: %s", exc)
+            return None
 
     def get_weather_for_hour(
         self,

@@ -3,6 +3,7 @@ fastapi>=0.110.0
 uvicorn[standard]>=0.27.1
 pydantic>=2.6.1
 python-multipart>=0.0.9
+python-dotenv>=1.0.0
 
 # Data & ML
 pandas>=2.2.3

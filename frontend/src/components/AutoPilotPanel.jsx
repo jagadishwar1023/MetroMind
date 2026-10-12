@@ -305,9 +305,14 @@ export default function AutoPilotDashboard({ onOpenEventMap }) {
       {data && (
         <div className="bg-slate-900/70 border border-slate-800/80 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between text-xs text-slate-300 gap-3">
           <div className="flex items-center gap-4 flex-wrap">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               {data.weather?.is_rain ? <CloudRain className="w-4 h-4 text-blue-400" /> : <Sun className="w-4 h-4 text-amber-400" />}
-              <span>{data.weather?.temperature || 30}°C {data.weather?.description || 'Clear'}</span>
+              <span className="font-semibold text-slate-200">{data.weather?.temperature || 30}°C</span>
+              <span className="text-slate-300">{data.weather?.description || 'Clear'}</span>
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                OpenWeather Live
+              </span>
               {data.weather?.is_rain && (
                 <span className="text-blue-300 font-semibold">(+{Math.round(((data.weather?.rain_surge_multiplier || 1.22) - 1) * 100)}% rain transit shift)</span>
               )}

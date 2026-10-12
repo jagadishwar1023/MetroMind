@@ -5,17 +5,17 @@ APScheduler-based background worker for the HMR Demand Optimisation system.
 
 Scheduled jobs
 --------------
-* job_scrape_events   – daily at 06:00 IST
-* job_fetch_weather   – every 3 hours
-* job_detect_anomalies – every 30 minutes
+* job_scrape_events   - daily at 06:00 IST
+* job_fetch_weather   - every 3 hours
+* job_detect_anomalies - every 30 minutes
 
 On first launch all three jobs are also queued to run 10 seconds after
 startup so the application is immediately populated with live data.
 
 Caches
 ------
-* WeatherCache  – reads/writes backend/data/weather_cache.json
-* EventCache    – reads backend/data/live_events.json (written by EventAggregator)
+* WeatherCache  - reads/writes backend/data/weather_cache.json
+* EventCache    - reads backend/data/live_events.json (written by EventAggregator)
 
 Dependencies (installed separately):
     apscheduler>=3.10
@@ -33,7 +33,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 # ---------------------------------------------------------------------------
-# Path bootstrap – ensure backend package is importable from anywhere
+# Path bootstrap - ensure backend package is importable from anywhere
 # ---------------------------------------------------------------------------
 _BACKEND_DIR = Path(__file__).parent.parent
 if str(_BACKEND_DIR) not in sys.path:
@@ -58,7 +58,29 @@ logger = logging.getLogger(__name__)
 _DATA_DIR = _BACKEND_DIR / "data"
 _WEATHER_STALE_HOURS = 3          # hours before cache is considered stale
 _ANOMALY_ROLLING_ROWS = 500       # rows from historical_demand.csv for detection
-_STARTUP_DELAY_SECONDS = 10       # seconds before the one-shot startup jobs fire
+_STARTUP_DELAY_SECONDS = 5        # seconds before startup jobs fire
+
+# ---------------------------------------------------------------------------
+# Pre-import scraper and model classes synchronously to prevent thread deadlock
+# ---------------------------------------------------------------------------
+try:
+    from scrapers.weather_client import WeatherClient
+except Exception as _e:
+    WeatherClient = None
+    logger.debug("WeatherClient pre-import: %s", _e)
+
+try:
+    from scrapers.event_scraper import EventAggregator, save_live_events
+except Exception as _e:
+    EventAggregator = None
+    save_live_events = None
+    logger.debug("EventAggregator pre-import: %s", _e)
+
+try:
+    from models.anomaly_detector import AnomalyDetector
+except Exception as _e:
+    AnomalyDetector = None
+    logger.debug("AnomalyDetector pre-import: %s", _e)
 
 # ============================================================================
 # WeatherCache
@@ -103,7 +125,7 @@ class WeatherCache:
         cls.CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
         with cls.CACHE_PATH.open("w", encoding="utf-8") as fh:
             json.dump(payload, fh, indent=2)
-        logger.debug("WeatherCache: saved (code=%s, temp=%.1f°C)", weather_code, temperature)
+        logger.debug("WeatherCache: saved (code=%s, temp=%.1f-C)", weather_code, temperature)
 
     # ------------------------------------------------------------------
     # Read
@@ -158,7 +180,7 @@ class WeatherCache:
 
         Returns
         -------
-        (weather_code, temperature) – falls back to current conditions if no
+        (weather_code, temperature) - falls back to current conditions if no
         matching forecast slot is found.
         """
         cached = cls.load()
@@ -303,15 +325,19 @@ def job_scrape_events() -> None:
     ``save_live_events()``.
     """
     try:
-        from scrapers.event_scraper import EventAggregator, save_live_events  # type: ignore[import]
+        if EventAggregator is None:
+            from scrapers.event_scraper import EventAggregator as _EA, save_live_events as _SLE
+            _agg_cls = _EA
+            _save_fn = _SLE
+        else:
+            _agg_cls = EventAggregator
+            _save_fn = save_live_events
 
-        logger.info("[job_scrape_events] Starting event scrape …")
-        aggregator = EventAggregator()
+        logger.info("[job_scrape_events] Starting event scrape -")
+        aggregator = _agg_cls()
         events = aggregator.fetch_all_events()
-        save_live_events(events)
-        logger.info("[job_scrape_events] Done – %d event(s) saved.", len(events))
-    except ImportError as exc:
-        logger.warning("[job_scrape_events] Scraper not available: %s", exc)
+        _save_fn(events)
+        logger.info("[job_scrape_events] Done - %d event(s) saved.", len(events))
     except Exception as exc:
         logger.error("[job_scrape_events] Unexpected error: %s", exc, exc_info=True)
 
@@ -325,10 +351,14 @@ def job_fetch_weather() -> None:
     :class:`WeatherCache`.
     """
     try:
-        from scrapers.weather_client import WeatherClient  # type: ignore[import]
+        if WeatherClient is None:
+            from scrapers.weather_client import WeatherClient as _WC
+            _client_cls = _WC
+        else:
+            _client_cls = WeatherClient
 
-        logger.info("[job_fetch_weather] Fetching weather …")
-        client = WeatherClient()
+        logger.info("[job_fetch_weather] Fetching weather -")
+        client = _client_cls()
 
         # Current conditions
         if hasattr(client, "fetch_current"):
@@ -353,7 +383,7 @@ def job_fetch_weather() -> None:
             forecast_list=forecast_list,
         )
         logger.info(
-            "[job_fetch_weather] Done – code=%s, temp=%.1f°C, %d forecast slots.",
+            "[job_fetch_weather] Done - code=%s, temp=%.1f-C, %d forecast slots.",
             weather_code,
             temperature,
             len(forecast_list),
@@ -377,9 +407,9 @@ def job_detect_anomalies() -> None:
     try:
         from models.anomaly_detector import AnomalyDetector  # type: ignore[import]
 
-        logger.info("[job_detect_anomalies] Running anomaly detection …")
+        logger.info("[job_detect_anomalies] Running anomaly detection -")
 
-        # ── Load rolling demand window ────────────────────────────────────
+        # -- Load rolling demand window ------------------------------------
         live_buffer_path = _DATA_DIR / "live_demand_buffer.json"
         hist_csv_path = _DATA_DIR / "historical_demand.csv"
 
@@ -410,7 +440,7 @@ def job_detect_anomalies() -> None:
             logger.info("[job_detect_anomalies] No demand data available; skipping.")
             return
 
-        # ── Run detection ─────────────────────────────────────────────────
+        # -- Run detection -------------------------------------------------
         detector = AnomalyDetector()
         alerts: List[Dict[str, Any]] = []
 
@@ -429,7 +459,7 @@ def job_detect_anomalies() -> None:
             except Exception:
                 continue  # never let one bad row crash the job
 
-        # ── Persist alerts ────────────────────────────────────────────────
+        # -- Persist alerts ------------------------------------------------
         alerts_path = _DATA_DIR / "active_alerts.json"
         _DATA_DIR.mkdir(parents=True, exist_ok=True)
         # Merge with existing alerts to avoid losing history within the same window
@@ -460,7 +490,7 @@ def job_detect_anomalies() -> None:
         critical = sum(1 for a in alerts if a.get("severity") == "CRITICAL")
         high = sum(1 for a in alerts if a.get("severity") == "HIGH")
         logger.info(
-            "[job_detect_anomalies] Done – %d new alert(s) (CRITICAL=%d, HIGH=%d).",
+            "[job_detect_anomalies] Done - %d new alert(s) (CRITICAL=%d, HIGH=%d).",
             len(alerts),
             critical,
             high,
@@ -489,12 +519,12 @@ def start_scheduler() -> BackgroundScheduler:
 
     Jobs
     ----
-    * ``scrape_events``   – CronTrigger, daily 06:00 IST
-    * ``fetch_weather``   – IntervalTrigger, every 3 hours
-    * ``detect_anomalies``– IntervalTrigger, every 30 minutes
-    * ``startup_events``  – DateTrigger, now + 10 s (one-shot)
-    * ``startup_weather`` – DateTrigger, now + 10 s (one-shot)
-    * ``startup_anomalies``– DateTrigger, now + 10 s (one-shot)
+    * ``scrape_events``   - CronTrigger, daily 06:00 IST
+    * ``fetch_weather``   - IntervalTrigger, every 3 hours
+    * ``detect_anomalies``- IntervalTrigger, every 30 minutes
+    * ``startup_events``  - DateTrigger, now + 10 s (one-shot)
+    * ``startup_weather`` - DateTrigger, now + 10 s (one-shot)
+    * ``startup_anomalies``- DateTrigger, now + 10 s (one-shot)
 
     Returns
     -------
@@ -508,7 +538,7 @@ def start_scheduler() -> BackgroundScheduler:
 
     scheduler = BackgroundScheduler(timezone="Asia/Kolkata")
 
-    # ── Recurring jobs ────────────────────────────────────────────────────
+    # -- Recurring jobs ----------------------------------------------------
     scheduler.add_job(
         job_scrape_events,
         trigger=CronTrigger(hour=6, minute=0, timezone="Asia/Kolkata"),
@@ -536,28 +566,28 @@ def start_scheduler() -> BackgroundScheduler:
         misfire_grace_time=120,
     )
 
-    # ── One-shot startup jobs (run once, 10 seconds after launch) ─────────
-    startup_time = datetime.now() + timedelta(seconds=_STARTUP_DELAY_SECONDS)
-
-    scheduler.add_job(
-        job_scrape_events,
-        trigger=DateTrigger(run_date=startup_time),
-        id="startup_events",
-        name="Startup: event scrape",
-        replace_existing=True,
-    )
+    # -- One-shot startup jobs (staggered to prevent race conditions) -----
+    now = datetime.now()
 
     scheduler.add_job(
         job_fetch_weather,
-        trigger=DateTrigger(run_date=startup_time),
+        trigger=DateTrigger(run_date=now + timedelta(seconds=2)),
         id="startup_weather",
         name="Startup: weather fetch",
         replace_existing=True,
     )
 
     scheduler.add_job(
+        job_scrape_events,
+        trigger=DateTrigger(run_date=now + timedelta(seconds=10)),
+        id="startup_events",
+        name="Startup: event scrape",
+        replace_existing=True,
+    )
+
+    scheduler.add_job(
         job_detect_anomalies,
-        trigger=DateTrigger(run_date=startup_time),
+        trigger=DateTrigger(run_date=now + timedelta(seconds=20)),
         id="startup_anomalies",
         name="Startup: anomaly detection",
         replace_existing=True,
