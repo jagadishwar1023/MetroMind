@@ -1,10 +1,20 @@
 import pandas as pd
 import os
 
-GTFS_DIR = r"C:\Users\jagad\Downloads\metrodata"
+from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_GTFS_DIR = BASE_DIR / "data" / "gtfs"
+
+GTFS_DIR = Path(os.environ.get("GTFS_DIR", str(DEFAULT_GTFS_DIR)))
+if not GTFS_DIR.exists():
+    fallback = Path(r"C:\Users\jagad\Downloads\metrodata")
+    if fallback.exists():
+        GTFS_DIR = fallback
 
 def load_stops():
-    df = pd.read_csv(os.path.join(GTFS_DIR, "stops.txt"))
+    df = pd.read_csv(os.path.join(str(GTFS_DIR), "stops.txt"))
     # Filter for parent stations (location_type==1) if applicable
     if 'location_type' in df.columns:
         df = df[df['location_type'] == 1]

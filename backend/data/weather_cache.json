@@ -4,7 +4,7 @@
   "forecast": [
     {
       "hour_offset": 0.0,
-      "hour": 5,
+      "hour": 6,
       "weather_code": 0,
       "temperature": 28.5,
       "description": "Partly cloudy",
@@ -12,7 +12,7 @@
     },
     {
       "hour_offset": 3.0,
-      "hour": 8,
+      "hour": 9,
       "weather_code": 0,
       "temperature": 29.0,
       "description": "Clear sky",
@@ -20,7 +20,7 @@
     },
     {
       "hour_offset": 6.0,
-      "hour": 11,
+      "hour": 12,
       "weather_code": 1,
       "temperature": 26.5,
       "description": "Light rain",
@@ -28,7 +28,7 @@
     },
     {
       "hour_offset": 9.0,
-      "hour": 14,
+      "hour": 15,
       "weather_code": 1,
       "temperature": 25.0,
       "description": "Moderate rain",
@@ -36,7 +36,7 @@
     },
     {
       "hour_offset": 12.0,
-      "hour": 17,
+      "hour": 18,
       "weather_code": 0,
       "temperature": 27.0,
       "description": "Scattered clouds",
@@ -44,7 +44,7 @@
     },
     {
       "hour_offset": 15.0,
-      "hour": 20,
+      "hour": 21,
       "weather_code": 3,
       "temperature": 30.0,
       "description": "Haze",
@@ -52,7 +52,7 @@
     },
     {
       "hour_offset": 18.0,
-      "hour": 23,
+      "hour": 0,
       "weather_code": 0,
       "temperature": 31.5,
       "description": "Clear sky",
@@ -60,12 +60,12 @@
     },
     {
       "hour_offset": 21.0,
-      "hour": 2,
+      "hour": 3,
       "weather_code": 0,
       "temperature": 29.5,
       "description": "Few clouds",
       "rain_probability": 0.05
     }
   ],
-  "timestamp": "2026-10-12T10:39:51.037903"
+  "timestamp": "2026-10-12T12:18:04.273449"
 }
