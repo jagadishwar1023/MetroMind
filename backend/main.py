@@ -1100,7 +1100,7 @@ def auto_optimize(req: AutoOptimizeRequest = None):
             base_demand[sid][h] = val
 
             # Apply rain commuter surge across the network if applicable
-            if is_rain:
+            if is_rain and rain_surge > 1.0:
                 val = round(val * rain_surge)
 
             demand[sid][h] = val
@@ -1272,12 +1272,17 @@ def auto_optimize(req: AutoOptimizeRequest = None):
     recommendations = []
 
     # Weather alert card
-    if is_rain:
+    if is_rain and rain_surge > 1.0:
+        if weather_code == 4 or rain_surge >= 1.25:
+            impact_desc = f"Severe thunderstorm conditions with potential waterlogging at low-lying underpasses causing estimated +{int((rain_surge-1)*100)}% commuter diversion to metro corridors."
+        else:
+            impact_desc = f"Wet road conditions and vehicular traffic slowdown causing estimated +{int((rain_surge-1)*100)}% commuter shift to metro corridors."
+
         recommendations.append({
-            'severity': 'warning',
+            'severity': 'warning' if rain_surge >= 1.15 else 'info',
             'corridor': 'NETWORK-WIDE',
-            'message': f"Weather Alert: {weather_info.get('description', 'Rain')} ({temperature}°C). Road waterlogging and congestion causing estimated +{int((rain_surge-1)*100)}% commuter diversion to metro corridors.",
-            'action': 'Tighten network-wide baseline headways by 1.5 - 2.0 minutes during wet commute hours.',
+            'message': f"Weather Advisory: {weather_info.get('description', 'Rain')} ({temperature}°C). {impact_desc}",
+            'action': 'Tighten network-wide baseline headways by 1.0 - 2.0 minutes during wet commute hours.',
             'type': 'weather_alert',
         })
 

@@ -472,96 +472,64 @@ def get_weather_for_date(target_date: date | str) -> Dict[str, Any]:
             from scrapers.weather_client import WeatherClient
             client = WeatherClient()
             curr = client.fetch_current()
-            code = curr.get('weather_code', 0)
-            temp = round(float(curr.get('temperature', 30.0)), 1)
-            desc = curr.get('description', 'Clear sky')
-            is_rain = code in [1, 4] or 'rain' in desc.lower() or 'thunder' in desc.lower()
             return {
-                'weather_code': code,
-                'temperature': temp,
-                'description': desc,
-                'source': 'live_openweather',
-                'is_rain': is_rain,
-                'rain_surge_multiplier': 1.25 if is_rain else 1.0,
+                'weather_code': curr.get('weather_code', 0),
+                'temperature': round(float(curr.get('temperature', 32.0)), 1),
+                'description': curr.get('description', 'Clear & Sunny, Normal Commute'),
+                'source': curr.get('source', 'live_open_meteo'),
+                'is_rain': curr.get('is_rain', False),
+                'rain_surge_multiplier': curr.get('rain_surge_multiplier', 1.0),
+                'precipitation_mm': curr.get('precipitation_mm', 0.0),
             }
         except Exception:
             pass
 
-        from scheduler.background_worker import WeatherCache
-        cached = WeatherCache.load()
-        code = cached.get('weather_code', 0)
-        temp = cached.get('temperature', 30.5)
-        return {
-            'weather_code': code,
-            'temperature': temp,
-            'description': _get_weather_desc(code),
-            'source': 'live' if not cached.get('is_stale', True) else 'cached',
-            'is_rain': code in [1, 4],
-            'rain_surge_multiplier': 1.25 if code in [1, 4] else 1.0,
-        }
-
-    # If within next 5 days, use real OpenWeather forecast
-    days_ahead = (target_date - today).days
-    if 0 < days_ahead <= 5:
         try:
-            from scrapers.weather_client import WeatherClient
-            client = WeatherClient()
-            forecast_item = client.get_forecast_for_date(target_date)
-            if forecast_item:
-                return forecast_item
+            from scheduler.background_worker import WeatherCache
+            cached = WeatherCache.load()
+            code = cached.get('weather_code', 0)
+            temp = cached.get('temperature', 32.0)
+            is_rain = code in [1, 4]
+            return {
+                'weather_code': code,
+                'temperature': temp,
+                'description': _get_weather_desc(code),
+                'source': 'live' if not cached.get('is_stale', True) else 'cached',
+                'is_rain': is_rain,
+                'rain_surge_multiplier': 1.15 if is_rain else 1.0,
+                'precipitation_mm': 0.0,
+            }
         except Exception:
             pass
 
-    # Deterministic weather pattern based on calendar date day
-    day_num = target_date.day
-    if day_num % 4 == 0:
-        # Thunderstorm / Heavy showers
-        return {
-            'weather_code': 4,
-            'temperature': 25.0,
-            'description': 'Evening Thunderstorm & Heavy Showers',
-            'source': 'forecast',
-            'is_rain': True,
-            'rain_surge_multiplier': 1.30,  # +30% rain commuter diversion
-        }
-    elif day_num % 2 == 0:
-        # Scattered showers
-        return {
-            'weather_code': 1,
-            'temperature': 27.5,
-            'description': 'Scattered Rain & Road Waterlogging',
-            'source': 'forecast',
-            'is_rain': True,
-            'rain_surge_multiplier': 1.22,  # +22% rain surge
-        }
-    elif day_num % 3 == 0:
-        # Partly cloudy
-        return {
-            'weather_code': 0,
-            'temperature': 30.0,
-            'description': 'Partly Cloudy, Warm Commute',
-            'source': 'forecast',
-            'is_rain': False,
-            'rain_surge_multiplier': 1.0,
-        }
-    else:
-        # Clear sky
-        return {
-            'weather_code': 0,
-            'temperature': 32.5,
-            'description': 'Clear Sky & Normal Traffic Flow',
-            'source': 'forecast',
-            'is_rain': False,
-            'rain_surge_multiplier': 1.0,
-        }
+    # For forecast or future dates, use WeatherClient (Open-Meteo 7-day daily forecast)
+    try:
+        from scrapers.weather_client import WeatherClient
+        client = WeatherClient()
+        forecast_item = client.get_forecast_for_date(target_date)
+        if forecast_item:
+            return forecast_item
+    except Exception:
+        pass
+
+    # Seasonal Hyderabad autumn baseline (warm, dry, zero fake rain or waterlogging)
+    return {
+        'weather_code': 0,
+        'temperature': 32.5,
+        'description': 'Clear & Sunny, Normal Commute',
+        'source': 'climatology_autumn',
+        'is_rain': False,
+        'rain_surge_multiplier': 1.0,
+        'precipitation_mm': 0.0,
+    }
 
 
 def _get_weather_desc(code: int) -> str:
     descriptions = {
-        0: 'Clear sky',
+        0: 'Clear & Sunny, Normal Commute',
         1: 'Moderate rain & wet road conditions',
         2: 'Dense fog & reduced road visibility',
         3: 'Haze / smog advisory',
-        4: 'Thunderstorm & surface waterlogging',
+        4: 'Severe thunderstorm advisory',
     }
     return descriptions.get(code, 'Clear')

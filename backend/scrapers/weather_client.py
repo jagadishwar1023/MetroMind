@@ -70,137 +70,322 @@ _CONDITION_CODE_MAP: dict[str, int] = {
 
 
 # ---------------------------------------------------------------------------
+# Precipitation & Road Impact Classification
+# ---------------------------------------------------------------------------
+
+def classify_precipitation_and_impact(
+    wmo_code: int = 0,
+    precip_mm: float = 0.0,
+    temp: float = 32.0,
+    description: str = "",
+) -> dict[str, Any]:
+    """
+    Scientifically accurate classification of rainfall impact on Hyderabad road traffic.
+    
+    Rule: Small precipitation (< 2.5 mm drizzle or brief passing showers) DOES NOT cause 
+    road waterlogging in Hyderabad. Normal traffic flow continues.
+    Waterlogging only occurs during severe convective thunderstorms or intense downpours (> 25 mm).
+    """
+    desc_lower = description.lower()
+
+    # 1. Severe Thunderstorm / Cloudburst (> 25 mm)
+    if wmo_code in [95, 96, 99] or precip_mm >= 25.0 or "thunderstorm" in desc_lower:
+        return {
+            "weather_code": 4,
+            "description": "Severe Thunderstorm & Local Waterlogging at Low-Lying Underpasses",
+            "is_rain": True,
+            "rain_surge_multiplier": 1.25,
+            "precip_mm": round(precip_mm, 1),
+        }
+
+    # 2. Heavy Rainfall (> 12 mm)
+    if precip_mm >= 12.0 or wmo_code in [65, 81, 82] or "heavy rain" in desc_lower:
+        return {
+            "weather_code": 1,
+            "description": "Heavy Rainfall, Arterial Road Traffic Slowdown",
+            "is_rain": True,
+            "rain_surge_multiplier": 1.15,
+            "precip_mm": round(precip_mm, 1),
+        }
+
+    # 3. Moderate Steady Rain (2.5 mm – 12 mm)
+    if precip_mm >= 2.5 or wmo_code in [61, 63, 80] or "moderate rain" in desc_lower:
+        return {
+            "weather_code": 1,
+            "description": "Moderate Rain & Wet Roads, Slight Traffic Slowdown",
+            "is_rain": True,
+            "rain_surge_multiplier": 1.08,
+            "precip_mm": round(precip_mm, 1),
+        }
+
+    # 4. Light Passing Drizzle / Trace Rain (< 2.5 mm) - NO WATERLOGGING
+    if precip_mm > 0.0 or wmo_code in [51, 53, 55] or any(k in desc_lower for k in ["drizzle", "light rain"]):
+        return {
+            "weather_code": 0,
+            "description": "Light Passing Drizzle, Normal Traffic Conditions (No Waterlogging)",
+            "is_rain": False,
+            "rain_surge_multiplier": 1.0,
+            "precip_mm": round(precip_mm, 1),
+        }
+
+    # 5. Fog
+    if wmo_code in [45, 48] or "fog" in desc_lower:
+        return {
+            "weather_code": 2,
+            "description": "Dense Fog & Reduced Visibility",
+            "is_rain": False,
+            "rain_surge_multiplier": 1.0,
+            "precip_mm": 0.0,
+        }
+
+    # 6. Partly Cloudy / Overcast
+    if wmo_code in [2, 3] or any(k in desc_lower for k in ["cloud", "overcast"]):
+        return {
+            "weather_code": 0,
+            "description": "Partly Cloudy, Dry Commute",
+            "is_rain": False,
+            "rain_surge_multiplier": 1.0,
+            "precip_mm": 0.0,
+        }
+
+    # 7. Clear & Sunny
+    return {
+        "weather_code": 0,
+        "description": "Clear & Sunny, Normal Commute",
+        "is_rain": False,
+        "rain_surge_multiplier": 1.0,
+        "precip_mm": 0.0,
+    }
+
+
+# ---------------------------------------------------------------------------
 # WeatherClient
 # ---------------------------------------------------------------------------
 
 class WeatherClient:
     """
-    Thin wrapper around the OpenWeatherMap ``/weather`` and ``/forecast``
-    endpoints for Hyderabad.
-
-    Instantiate once via ``get_weather_client()`` (module-level singleton)
-    rather than creating instances directly.
+    Hyderabad meteorological client combining real-time Open-Meteo WMO ground
+    truth telemetry with OpenWeatherMap observation.
     """
 
     def __init__(self, api_key: str = OPENWEATHER_API_KEY) -> None:
         self._api_key = api_key
 
-    # ------------------------------------------------------------------
-    # Public API
-    # ------------------------------------------------------------------
-
     def fetch_current(self) -> dict[str, Any]:
-        """
-        Fetch current weather conditions for Hyderabad.
-
-        Returns
-        -------
-        dict with keys:
-            temperature (float), weather_code (int 0-4), description (str),
-            humidity (int), wind_speed (float), raw_condition (str)
-        """
-        if not self._api_key:
-            logger.debug("No API key; returning mock current weather.")
-            return self._mock_weather()
-
+        """Fetch real-time current conditions for Hyderabad."""
+        # 1. Primary: High-accuracy Open-Meteo WMO live station
         try:
-            url = f"{BASE_URL}/weather"
-            params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric"}
-            resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
-            resp.raise_for_status()
-            return self._parse_current(resp.json())
-        except Exception as exc:  # noqa: BLE001
-            logger.warning("fetch_current failed (%s); trying city id fallback...", exc)
+            url = "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&timezone=Asia%2FKolkata"
+            resp = requests.get(url, timeout=HTTP_TIMEOUT)
+            if resp.status_code == 200:
+                c = resp.json().get("current", {})
+                temp = float(c.get("temperature_2m", 33.0))
+                precip = float(c.get("precipitation", 0.0))
+                wmo = int(c.get("weather_code", 0))
+                classified = classify_precipitation_and_impact(wmo, precip, temp)
+                return {
+                    "temperature": round(temp, 1),
+                    "weather_code": classified["weather_code"],
+                    "description": classified["description"],
+                    "humidity": int(c.get("relative_humidity_2m", 35)),
+                    "wind_speed": float(c.get("wind_speed_10m", 5.0)),
+                    "is_rain": classified["is_rain"],
+                    "rain_surge_multiplier": classified["rain_surge_multiplier"],
+                    "precipitation_mm": precip,
+                    "source": "live_open_meteo",
+                }
+        except Exception as exc:
+            logger.warning("Open-Meteo current fetch failed: %s", exc)
+
+        # 2. Secondary fallback: OpenWeatherMap
+        if self._api_key:
             try:
-                params = {"id": CITY_ID, "appid": self._api_key, "units": "metric"}
+                url = f"{BASE_URL}/weather"
+                params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric"}
                 resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
-                resp.raise_for_status()
-                return self._parse_current(resp.json())
-            except Exception:
-                return self._mock_weather()
+                if resp.status_code == 200:
+                    return self._parse_current(resp.json())
+            except Exception as exc:
+                logger.warning("OpenWeather current fallback failed: %s", exc)
+
+        return self._mock_weather()
 
     def fetch_forecast(self, hours: int = 24) -> list[dict[str, Any]]:
         """
-        Fetch a 3-hourly forecast for Hyderabad.
-
-        Parameters
-        ----------
-        hours : int
-            How many hours ahead to fetch (rounded up to the nearest 3-hour slot).
-
-        Returns
-        -------
-        list of dicts, each with keys:
-            hour_offset (int), hour (int 0-23), weather_code (int 0-4),
-            temperature (float), description (str), rain_probability (float 0-1)
+        Fetch an hourly or 3-hourly forecast for Hyderabad.
+        Primary: High-accuracy Open-Meteo hourly telemetry.
+        Secondary: OpenWeatherMap 3-hourly forecast.
+        Fallback: Climatological dry profile (zero fake rain).
         """
-        if not self._api_key:
-            logger.debug("No API key; returning mock forecast.")
-            return self._mock_forecast()
-
+        # 1. Primary: High-accuracy Open-Meteo hourly telemetry
         try:
-            cnt = hours // 3 + 4   # extra slots for safety
-            url = f"{BASE_URL}/forecast"
-            params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric", "cnt": cnt}
-            resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
-            resp.raise_for_status()
-            return self._parse_forecast(resp.json(), hours)
-        except Exception as exc:  # noqa: BLE001
-            logger.warning("fetch_forecast failed (%s); returning mock data.", exc)
-            return self._mock_forecast()
+            url = f"https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&hourly=temperature_2m,precipitation_probability,precipitation,weather_code&timezone=Asia%2FKolkata&forecast_hours={max(hours, 24)}"
+            resp = requests.get(url, timeout=HTTP_TIMEOUT)
+            if resp.status_code == 200:
+                data = resp.json().get("hourly", {})
+                times = data.get("time", [])
+                temps = data.get("temperature_2m", [])
+                precips = data.get("precipitation", [])
+                codes = data.get("weather_code", [])
+                probs = data.get("precipitation_probability", [])
+
+                try:
+                    import pytz
+                    now_ist = datetime.now(pytz.timezone("Asia/Kolkata"))
+                except Exception:
+                    now_ist = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+
+                slots: list[dict[str, Any]] = []
+                for i in range(len(times)):
+                    t_str = times[i]
+                    try:
+                        t_dt = datetime.fromisoformat(t_str)
+                        if t_dt.tzinfo is None:
+                            try:
+                                import pytz
+                                t_dt = pytz.timezone("Asia/Kolkata").localize(t_dt)
+                            except Exception:
+                                t_dt = t_dt.replace(tzinfo=timezone(timedelta(hours=5, minutes=30)))
+                        offset = round((t_dt - now_ist).total_seconds() / 3600.0, 1)
+                    except Exception:
+                        offset = float(i)
+                    if offset < -1.0:
+                        continue
+                    if offset > hours:
+                        break
+                    precip_val = float(precips[i]) if i < len(precips) else 0.0
+                    temp_val = float(temps[i]) if i < len(temps) else 30.0
+                    wmo_val = int(codes[i]) if i < len(codes) else 0
+                    prob_val = float(probs[i]) / 100.0 if i < len(probs) else 0.0
+
+                    classified = classify_precipitation_and_impact(wmo_val, precip_val, temp_val)
+                    slots.append({
+                        "hour_offset": max(0.0, offset),
+                        "hour": t_dt.hour,
+                        "weather_code": classified["weather_code"],
+                        "temperature": round(temp_val, 1),
+                        "description": classified["description"],
+                        "rain_probability": round(prob_val, 2),
+                    })
+                if slots:
+                    return slots
+        except Exception as exc:
+            logger.warning("Open-Meteo hourly forecast failed: %s", exc)
+
+        # 2. Secondary: OpenWeatherMap
+        if self._api_key:
+            try:
+                cnt = hours // 3 + 4   # extra slots for safety
+                url = f"{BASE_URL}/forecast"
+                params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric", "cnt": cnt}
+                resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
+                resp.raise_for_status()
+                return self._parse_forecast(resp.json(), hours)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("fetch_forecast OWM failed (%s); returning mock data.", exc)
+
+        return self._mock_forecast()
 
     def get_forecast_for_date(self, target_date: Any) -> Optional[dict[str, Any]]:
         """
-        Return the summarized weather forecast for a specific date from OpenWeather 5-day forecast.
+        Return the summarized weather forecast for a specific date.
+        Primary: Open-Meteo 7-day daily forecast (free, live, high-precision).
+        Secondary: OpenWeatherMap 5-day forecast.
+        Fallback: Climatological dry autumn profile (no fake rain or waterlogging).
         """
-        if not self._api_key:
-            return None
         if hasattr(target_date, "strftime"):
             date_str = target_date.strftime("%Y-%m-%d")
         else:
             date_str = str(target_date)
 
+        # 1. Primary: Open-Meteo 7-day daily forecast
         try:
-            url = f"{BASE_URL}/forecast"
-            params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric"}
-            resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
-            resp.raise_for_status()
-            data = resp.json()
-            items = data.get("list", [])
+            url = "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia%2FKolkata"
+            resp = requests.get(url, timeout=HTTP_TIMEOUT)
+            if resp.status_code == 200:
+                daily = resp.json().get("daily", {})
+                times = daily.get("time", [])
+                if date_str in times:
+                    idx = times.index(date_str)
+                    wmo = int(daily.get("weather_code", [0])[idx])
+                    precip = float(daily.get("precipitation_sum", [0.0])[idx])
+                    t_max = float(daily.get("temperature_2m_max", [32.0])[idx])
+                    t_min = float(daily.get("temperature_2m_min", [24.0])[idx])
+                    avg_temp = round((t_max + t_min) / 2.0, 1)
 
-            # Match items starting with date_str
-            matching = [it for it in items if it.get("dt_txt", "").startswith(date_str)]
-            if not matching:
-                return None
-
-            temps = [it.get("main", {}).get("temp", 30.0) for it in matching]
-            avg_temp = round(sum(temps) / len(temps), 1)
-
-            # Check for rain / storms
-            rain_item = next((it for it in matching if any(w.get("main", "").lower() in ["rain", "thunderstorm", "drizzle"] for w in it.get("weather", []))), None)
-            if rain_item:
-                w_info = rain_item.get("weather", [{}])[0]
-                desc = w_info.get("description", "Showers").capitalize()
-                code = self._map_condition_to_code(w_info.get("main", "Rain"))
-                is_rain = True
-            else:
-                mid = matching[len(matching) // 2]
-                w_info = mid.get("weather", [{}])[0]
-                desc = w_info.get("description", "Clear sky").capitalize()
-                code = self._map_condition_to_code(w_info.get("main", "Clear"))
-                is_rain = False
-
-            return {
-                "weather_code": code,
-                "temperature": avg_temp,
-                "description": desc,
-                "source": "live_openweather_forecast",
-                "is_rain": is_rain,
-                "rain_surge_multiplier": 1.25 if is_rain else 1.0,
-            }
+                    classified = classify_precipitation_and_impact(wmo, precip, avg_temp)
+                    return {
+                        "weather_code": classified["weather_code"],
+                        "temperature": avg_temp,
+                        "description": classified["description"],
+                        "source": "live_open_meteo_forecast",
+                        "is_rain": classified["is_rain"],
+                        "rain_surge_multiplier": classified["rain_surge_multiplier"],
+                        "precipitation_mm": precip,
+                    }
         except Exception as exc:
-            logger.warning("get_forecast_for_date failed: %s", exc)
-            return None
+            logger.warning("Open-Meteo daily forecast lookup failed: %s", exc)
+
+        # 2. Secondary: OpenWeather 5-day forecast
+        if self._api_key:
+            try:
+                url = f"{BASE_URL}/forecast"
+                params = {"q": "Hyderabad,IN", "appid": self._api_key, "units": "metric"}
+                resp = requests.get(url, params=params, timeout=HTTP_TIMEOUT)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    items = data.get("list", [])
+
+                    # Match items starting with date_str
+                    matching = [it for it in items if it.get("dt_txt", "").startswith(date_str)]
+                    if matching:
+                        temps = [it.get("main", {}).get("temp", 30.0) for it in matching]
+                        avg_temp = round(sum(temps) / len(temps), 1)
+
+                        # Check for rain / storms
+                        rain_item = next((it for it in matching if any(w.get("main", "").lower() in ["rain", "thunderstorm", "drizzle"] for w in it.get("weather", []))), None)
+                        if rain_item:
+                            w_info = rain_item.get("weather", [{}])[0]
+                            desc = w_info.get("description", "Showers").capitalize()
+                            code = self._map_condition_to_code(w_info.get("main", "Rain"))
+                            rain_mm = float(rain_item.get("rain", {}).get("3h", 0.0))
+                            classified = classify_precipitation_and_impact(code, rain_mm, avg_temp, desc)
+                            return {
+                                "weather_code": classified["weather_code"],
+                                "temperature": avg_temp,
+                                "description": classified["description"],
+                                "source": "live_openweather_forecast",
+                                "is_rain": classified["is_rain"],
+                                "rain_surge_multiplier": classified["rain_surge_multiplier"],
+                                "precipitation_mm": rain_mm,
+                            }
+                        else:
+                            mid = matching[len(matching) // 2]
+                            w_info = mid.get("weather", [{}])[0]
+                            desc = w_info.get("description", "Clear sky").capitalize()
+                            code = self._map_condition_to_code(w_info.get("main", "Clear"))
+                            return {
+                                "weather_code": code,
+                                "temperature": avg_temp,
+                                "description": desc,
+                                "source": "live_openweather_forecast",
+                                "is_rain": False,
+                                "rain_surge_multiplier": 1.0,
+                                "precipitation_mm": 0.0,
+                            }
+            except Exception as exc:
+                logger.warning("OpenWeather get_forecast_for_date failed: %s", exc)
+
+        # 3. Beyond 7-day forecast window or offline: return standard Hyderabad autumn climate
+        return {
+            "weather_code": 0,
+            "temperature": 32.5,
+            "description": "Clear & Sunny, Normal Commute",
+            "source": "climatology_autumn",
+            "is_rain": False,
+            "rain_surge_multiplier": 1.0,
+            "precipitation_mm": 0.0,
+        }
 
     def get_weather_for_hour(
         self,
@@ -334,12 +519,15 @@ class WeatherClient:
     def _mock_weather() -> dict[str, Any]:
         """Realistic fallback current-weather dict for Hyderabad."""
         return {
-            "temperature": 28.5,
+            "temperature": 32.5,
             "weather_code": 0,
-            "description": "Partly cloudy",
-            "humidity": 65,
-            "wind_speed": 3.2,
-            "raw_condition": "Clouds",
+            "description": "Clear & Sunny, Normal Commute",
+            "humidity": 45,
+            "wind_speed": 4.5,
+            "raw_condition": "Clear",
+            "is_rain": False,
+            "rain_surge_multiplier": 1.0,
+            "precipitation_mm": 0.0,
         }
 
     @staticmethod
@@ -348,14 +536,14 @@ class WeatherClient:
         now = datetime.now(tz=timezone.utc)
         slots = []
         conditions = [
-            (0, "Partly cloudy",     28.5, 0.05),
-            (0, "Clear sky",         29.0, 0.02),
-            (1, "Light rain",        26.5, 0.75),
-            (1, "Moderate rain",     25.0, 0.85),
-            (0, "Scattered clouds", 27.0, 0.20),
-            (3, "Haze",             30.0, 0.10),
-            (0, "Clear sky",         31.5, 0.02),
-            (0, "Few clouds",        29.5, 0.05),
+            (0, "Partly cloudy",     30.5, 0.05),
+            (0, "Clear sky",         32.0, 0.02),
+            (0, "Sunny",             33.5, 0.00),
+            (0, "Partly cloudy",     31.0, 0.05),
+            (0, "Clear sky",         29.0, 0.00),
+            (0, "Clear sky",         27.5, 0.00),
+            (0, "Sunny",             28.5, 0.00),
+            (0, "Few clouds",        31.5, 0.05),
         ]
         for i, (code, desc, temp, pop) in enumerate(conditions):
             offset_hours = i * 3
@@ -369,6 +557,7 @@ class WeatherClient:
                 "rain_probability": pop,
             })
         return slots
+
 
 
 # ---------------------------------------------------------------------------

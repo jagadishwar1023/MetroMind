@@ -348,10 +348,10 @@ export default function AutoPilotDashboard({ onOpenEventMap }) {
               <span className="text-slate-300">{data.weather?.description || 'Clear'}</span>
               <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                OpenWeather Live
+                {data.weather?.source?.includes('open_meteo') ? 'Open-Meteo Live' : data.weather?.source?.includes('openweather') ? 'OpenWeather Live' : 'Live Weather'}
               </span>
-              {data.weather?.is_rain && (
-                <span className="text-blue-300 font-semibold">(+{Math.round(((data.weather?.rain_surge_multiplier || 1.22) - 1) * 100)}% rain transit shift)</span>
+              {data.weather?.is_rain && (data.weather?.rain_surge_multiplier || 1.0) > 1.0 && (
+                <span className="text-blue-300 font-semibold">(+{Math.round(((data.weather?.rain_surge_multiplier || 1.0) - 1) * 100)}% rain transit shift)</span>
               )}
             </div>
 
