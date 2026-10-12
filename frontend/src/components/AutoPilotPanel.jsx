@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { autoOptimize, createManualEvent, deleteManualEvent, getStations } from '../api/client';
+import { autoOptimize, createManualEvent, deleteManualEvent, getStations, getApiBaseUrl, setApiBaseUrl } from '../api/client';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
@@ -300,6 +300,34 @@ export default function AutoPilotDashboard({ onOpenEventMap }) {
           </button>
         </div>
       </div>
+
+      {/* ─── Backend Connection Alert (if disconnected or misconfigured) ─── */}
+      {error && (
+        <div className="bg-rose-950/40 border border-rose-800/80 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-rose-200 text-xs shadow-lg">
+          <div className="flex items-center gap-2.5">
+            <span className="text-base">⚠️</span>
+            <div>
+              <p className="font-semibold text-rose-100">Unable to reach backend API ({error})</p>
+              <p className="text-rose-300 text-[11px] mt-0.5">
+                Target URL: <code className="bg-rose-900/60 px-1.5 py-0.5 rounded text-white font-mono">{getApiBaseUrl()}</code>
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              const current = getApiBaseUrl();
+              const input = window.prompt("Enter your Render Backend URL (e.g. https://metromind-api.onrender.com):", current === 'http://localhost:8000' ? '' : current);
+              if (input !== null && input.trim()) {
+                setApiBaseUrl(input.trim());
+                window.location.reload();
+              }
+            }}
+            className="px-3 py-1.5 bg-rose-800/80 hover:bg-rose-700 text-white font-semibold rounded-lg transition self-start sm:self-auto shrink-0"
+          >
+            Configure Backend URL
+          </button>
+        </div>
+      )}
 
       {/* ─── Operating Context Strip (Quiet single-line banner) ─── */}
       {data && (

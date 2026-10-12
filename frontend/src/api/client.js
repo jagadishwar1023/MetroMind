@@ -1,9 +1,33 @@
 import axios from 'axios';
 
+export const getApiBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('METROMIND_API_URL');
+    if (saved && saved.trim()) return saved.trim().replace(/\/+$/, '');
+  }
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl && envUrl.trim()) return envUrl.trim().replace(/\/+$/, '');
+  return 'http://localhost:8000';
+};
+
+export const setApiBaseUrl = (url) => {
+  if (typeof window !== 'undefined') {
+    if (!url || !url.trim()) {
+      localStorage.removeItem('METROMIND_API_URL');
+    } else {
+      localStorage.setItem('METROMIND_API_URL', url.trim().replace(/\/+$/, ''));
+    }
+  }
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
   headers: { 'Content-Type': 'application/json' },
-  timeout: 15000,
+  timeout: 20000,
+});
+
+api.interceptors.request.use((config) => {
+  config.baseURL = getApiBaseUrl();
+  return config;
 });
 
 // ── Existing endpoints ──────────────────────────────────────

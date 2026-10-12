@@ -461,7 +461,11 @@ def get_weather_for_date(target_date: date | str) -> Dict[str, Any]:
     if isinstance(target_date, str):
         target_date = date.fromisoformat(target_date)
 
-    today = date.today()
+    try:
+        import pytz
+        today = datetime.now(pytz.timezone("Asia/Kolkata")).date()
+    except Exception:
+        today = date.today()
 
     if target_date == today:
         try:

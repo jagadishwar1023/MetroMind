@@ -139,14 +139,14 @@ class BookMyShowScraper:
     URL = "https://in.bookmyshow.com/explore/events-hyderabad"
 
     def fetch(self) -> list[dict[str, Any]]:
-        """Return list of normalised event dicts, falling back to mock data."""
+        """Return list of normalised event dicts, returning [] on error."""
         try:
             resp = requests.get(self.URL, headers=COMMON_HEADERS, timeout=HTTP_TIMEOUT)
             resp.raise_for_status()
             return self._parse(resp.text)
         except Exception as exc:  # noqa: BLE001
-            logger.warning("BookMyShow scrape failed (%s); using mock data.", exc)
-            return self._mock_events()
+            logger.info("BookMyShow scrape unavailable (%s); skipping.", exc)
+            return []
 
     def _parse(self, html: str) -> list[dict[str, Any]]:
         """Parse BMS event cards from raw HTML."""
@@ -322,8 +322,8 @@ class PaytmInsiderScraper:
             resp.raise_for_status()
             return self._parse(resp.json())
         except Exception as exc:  # noqa: BLE001
-            logger.warning("PaytmInsider fetch failed (%s); using mock data.", exc)
-            return self._mock_events()
+            logger.info("PaytmInsider fetch unavailable (%s); skipping.", exc)
+            return []
 
     def _parse(self, data: Any) -> list[dict[str, Any]]:
         """Parse JSON response from Insider API."""
@@ -461,8 +461,8 @@ class IPLScheduleFetcher:
             if matches:
                 return matches
         except Exception as exc:  # noqa: BLE001
-            logger.warning("IPL schedule fetch failed (%s); using mock data.", exc)
-        return self._mock_events()
+            logger.info("IPL schedule fetch unavailable (%s); skipping.", exc)
+        return []
 
     def _parse(self, html: str) -> list[dict[str, Any]]:
         """Extract Hyderabad fixtures from the IPL schedule page."""
@@ -565,11 +565,11 @@ class TrafficAdvisoryFetcher:
     NITTER_URL = "https://nitter.net/search"
 
     def fetch(self) -> list[dict[str, Any]]:
-        """Combine police advisories and social signals; fall back to mock."""
+        """Combine police advisories and social signals; returns real events only."""
         events: list[dict[str, Any]] = []
         events.extend(self._fetch_police_advisory())
         events.extend(self._fetch_nitter())
-        return events if events else self._mock_events()
+        return events
 
     # ------------------------------------------------------------------
     # Police advisory page
@@ -762,35 +762,45 @@ class AllEventsScraper:
                 if resp.status_code != 200:
                     continue
                 soup = BeautifulSoup(resp.text, "html.parser")
-                cards = soup.select(".event-card")
-                for card in cards[:30]:
+                cards = soup.select("li.event-card, [data-event-id], li.res-card")
+                for card in cards[:40]:
                     name = card.get("data-name") or ""
                     if not name:
-                        name_el = card.select_one(".title, h3")
+                        name_el = card.find(["h3", "h2", "h4"])
                         name = name_el.get_text(strip=True) if name_el else ""
                     if not name or len(name) < 4 or name.lower() in seen_names:
                         continue
+
+                    date_el = card.select_one(".date, .time")
+                    date_raw = date_el.get_text(strip=True) if date_el else ""
+                    start_time = self._parse_date_from_text(date_raw or card.get_text(" | ", strip=True))
+                    if not start_time:
+                        continue
+
                     seen_names.add(name.lower())
-
                     link = card.get("data-link") or "https://allevents.in/hyderabad"
-                    text_content = card.get_text(" | ", strip=True)
 
-                    venue_name = "Hyderabad"
+                    loc_el = card.select_one(".location, .subtitle")
+                    loc_text = loc_el.get_text(strip=True) if loc_el else "Hyderabad"
+                    text_content = f"{name} {loc_text}"
+
+                    venue_name = loc_text if len(loc_text) > 3 else "Hyderabad"
                     venue_lat, venue_lon = 17.3850, 78.4867
-                    v_lower = (text_content + " " + name).lower()
+                    v_lower = text_content.lower()
+
                     if "uppal" in v_lower:
                         venue_name = "Rajiv Gandhi International Cricket Stadium, Uppal"
                         venue_lat, venue_lon = 17.4063, 78.5480
                     elif "gymkhana" in v_lower:
                         venue_name = "Gymkhana Cricket Grounds, Secunderabad"
                         venue_lat, venue_lon = 17.4445, 78.4976
-                    elif "gachibowli" in v_lower:
+                    elif "gachibowli" in v_lower or "the league" in v_lower:
                         venue_name = "Gachibowli Indoor Stadium"
                         venue_lat, venue_lon = 17.4399, 78.3490
                     elif "hitex" in v_lower:
                         venue_name = "Hitex Exhibition Centre, HITEC City"
                         venue_lat, venue_lon = 17.4517, 78.3727
-                    elif "hicc" in v_lower or "novotel" in v_lower:
+                    elif "hicc" in v_lower or "novotel" in v_lower or "district 150" in v_lower or "le meridien" in v_lower:
                         venue_name = "Hyderabad International Convention Centre (HICC)"
                         venue_lat, venue_lon = 17.4448, 78.3766
                     elif "shilpakala" in v_lower:
@@ -809,9 +819,7 @@ class AllEventsScraper:
                         venue_name = "Visvesvaraya Bhavan, Khairatabad"
                         venue_lat, venue_lon = 17.4125, 78.4610
 
-                    start_time = self._parse_date_from_text(text_content, fallback_days=fallback_days)
                     end_time = (datetime.fromisoformat(start_time.rstrip("Z")) + timedelta(hours=3)).isoformat() + "Z"
-
                     raw_type = _normalise_event_type(name)
                     attendance = BookMyShowScraper._infer_attendance(raw_type)
 
@@ -827,7 +835,7 @@ class AllEventsScraper:
                             end_time=end_time,
                             expected_attendance=attendance,
                             crowd_estimate=BookMyShowScraper._crowd_label(attendance),
-                            source="allevents",
+                            source="allevents_live",
                             event_url=link
                         )
                     )
@@ -836,9 +844,32 @@ class AllEventsScraper:
         return events
 
     @staticmethod
-    def _parse_date_from_text(text: str, fallback_days: int = 1) -> str:
+    def _parse_date_from_text(text: str) -> Optional[str]:
+        raw = text.split("+")[0].strip()
         now = datetime.utcnow()
-        lower = text.lower()
+
+        # Check explicit day + month + time: e.g. "17 Oct, 2026 - 07:00 PM" or "24 Oct · 06:30 PM"
+        m = re.search(r"(\d{1,2})\s+([A-Za-z]{3})(?:,?\s*(\d{4}))?.*?(\d{1,2}):(\d{2})\s*(AM|PM)", raw, re.I)
+        if m:
+            day, mon, yr, hr, mn, ampm = m.groups()
+            yr = yr or str(now.year)
+            hr_int = int(hr)
+            if ampm.upper() == "PM" and hr_int != 12:
+                hr_int += 12
+            elif ampm.upper() == "AM" and hr_int == 12:
+                hr_int = 0
+            months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+            mon_lower = mon.lower()
+            if mon_lower in months:
+                mon_num = months.index(mon_lower) + 1
+                try:
+                    dt = datetime(int(yr), mon_num, int(day), hr_int, int(mn))
+                    return dt.isoformat() + "Z"
+                except Exception:
+                    pass
+
+        # Check relative "today" or "tomorrow"
+        lower = raw.lower()
         if "tomorrow" in lower:
             dt = (now + timedelta(days=1)).replace(hour=18, minute=0, second=0, microsecond=0)
             return dt.isoformat() + "Z"
@@ -846,36 +877,7 @@ class AllEventsScraper:
             dt = now.replace(hour=18, minute=0, second=0, microsecond=0)
             return dt.isoformat() + "Z"
 
-        months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-        # Match '12th Oct' or '12 Oct'
-        match1 = re.search(r"(\d{1,2})(?:st|nd|rd|th)?\s+([a-zA-Z]{3})", text, re.I)
-        if match1:
-            day = int(match1.group(1))
-            m_str = match1.group(2).lower()
-            if m_str in months:
-                month = months.index(m_str) + 1
-                year = now.year if month >= now.month else now.year + 1
-                try:
-                    dt = datetime(year, month, day, 18, 0, 0)
-                    return dt.isoformat() + "Z"
-                except ValueError:
-                    pass
-
-        # Match 'Oct 12'
-        match2 = re.search(r"([a-zA-Z]{3})\s+(\d{1,2})", text, re.I)
-        if match2:
-            m_str = match2.group(1).lower()
-            day = int(match2.group(2))
-            if m_str in months:
-                month = months.index(m_str) + 1
-                year = now.year if month >= now.month else now.year + 1
-                try:
-                    dt = datetime(year, month, day, 18, 0, 0)
-                    return dt.isoformat() + "Z"
-                except ValueError:
-                    pass
-
-        return (now + timedelta(days=fallback_days)).replace(hour=18, minute=0, second=0, microsecond=0).isoformat() + "Z"
+        return None
 
 
 # ---------------------------------------------------------------------------
