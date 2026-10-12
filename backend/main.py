@@ -530,6 +530,14 @@ def get_live_weather():
 
 # ── NEW: Live Events endpoints ────────────────────────────────────────────────
 
+@app.post('/events/refresh')
+def refresh_events():
+    """Trigger an immediate live re-scrape of city events across Hyderabad."""
+    from scheduler.background_worker import job_scrape_events, EventCache
+    job_scrape_events()
+    events = EventCache.load()
+    return {'status': 'refreshed', 'total_events': len(events), 'timestamp': datetime.now().isoformat()}
+
 @app.get('/events/live')
 def get_live_events(within_hours: int = 48):
     """

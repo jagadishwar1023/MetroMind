@@ -215,16 +215,42 @@ class EventCache:
     # Raw load
     # ------------------------------------------------------------------
     @classmethod
-    def load(cls) -> List[Dict[str, Any]]:
-        """Return the full event list; returns [] if the file is missing."""
+    def load(cls, auto_refresh_stale: bool = True) -> List[Dict[str, Any]]:
+        """Return the full event list; auto-refreshes from web if missing or older than 24 hours."""
+        import time
+        needs_refresh = False
+        if not cls.CACHE_PATH.exists():
+            needs_refresh = True
+        else:
+            try:
+                age_seconds = time.time() - cls.CACHE_PATH.stat().st_mtime
+                if age_seconds > 86400:  # older than 24 hours
+                    needs_refresh = True
+            except Exception:
+                pass
+
+        if needs_refresh and auto_refresh_stale:
+            try:
+                if EventAggregator is not None and save_live_events is not None:
+                    _agg_cls = EventAggregator
+                    _save_fn = save_live_events
+                else:
+                    from scrapers.event_scraper import EventAggregator as _agg_cls, save_live_events as _save_fn
+                logger.info("EventCache is stale (>24h old); triggering live re-scrape...")
+                evs = _agg_cls().fetch_all_events()
+                _save_fn(evs)
+                return evs
+            except Exception as exc:
+                logger.warning("EventCache auto-refresh failed (%s); reading existing data.", exc)
+
         if not cls.CACHE_PATH.exists():
             return []
+
         try:
             with cls.CACHE_PATH.open(encoding="utf-8") as fh:
                 data = json.load(fh)
             if isinstance(data, list):
                 return data
-            # Some scrapers wrap the list in a dict
             if isinstance(data, dict):
                 return data.get("events", [])
             return []
