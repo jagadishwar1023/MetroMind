@@ -313,19 +313,28 @@ export default function AutoPilotDashboard({ onOpenEventMap }) {
               </p>
             </div>
           </div>
-          <button
-            onClick={() => {
-              const current = getApiBaseUrl();
-              const input = window.prompt("Enter your Render Backend URL (e.g. https://metromind-api.onrender.com):", current === 'http://localhost:8000' ? '' : current);
-              if (input !== null && input.trim()) {
-                setApiBaseUrl(input.trim());
-                window.location.reload();
-              }
-            }}
-            className="px-3 py-1.5 bg-rose-800/80 hover:bg-rose-700 text-white font-semibold rounded-lg transition self-start sm:self-auto shrink-0"
-          >
-            Configure Backend URL
-          </button>
+          <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+            <button
+              onClick={() => fetchOptimization(excludedIds, selectedDate)}
+              disabled={loading}
+              className="px-3 py-1.5 bg-cyan-700/80 hover:bg-cyan-600 text-white font-semibold rounded-lg transition disabled:opacity-50"
+            >
+              {loading ? 'Retrying...' : 'Retry Now'}
+            </button>
+            <button
+              onClick={() => {
+                const current = getApiBaseUrl();
+                const input = window.prompt("Enter your Render Backend URL (e.g. https://metromind-api.onrender.com):", current === 'http://localhost:8000' ? '' : current);
+                if (input !== null && input.trim()) {
+                  setApiBaseUrl(input.trim());
+                  window.location.reload();
+                }
+              }}
+              className="px-3 py-1.5 bg-rose-800/80 hover:bg-rose-700 text-white font-semibold rounded-lg transition"
+            >
+              Change URL
+            </button>
+          </div>
         </div>
       )}
 

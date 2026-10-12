@@ -22,7 +22,7 @@ export const setApiBaseUrl = (url) => {
 
 const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
-  timeout: 20000,
+  timeout: 60000, // 60s accommodates cloud free-tier cold start wake-up
 });
 
 api.interceptors.request.use((config) => {
