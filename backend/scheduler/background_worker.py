@@ -527,6 +527,17 @@ def job_detect_anomalies() -> None:
         logger.error("[job_detect_anomalies] Unexpected error: %s", exc, exc_info=True)
 
 
+def job_refresh_disruptions() -> None:
+    """Fetch live weather and events, then recalculate transit disruptions."""
+    try:
+        from scrapers.disruption_service import disruption_service
+        logger.info("[job_refresh_disruptions] Refreshing unified disruptions (Weather + Events)...")
+        feed = disruption_service.get_disruptions(force_refresh=True)
+        logger.info("[job_refresh_disruptions] Disruption refresh complete (%d active disruptions).", feed.get("total_active_disruptions", 0))
+    except Exception as exc:
+        logger.warning("[job_refresh_disruptions] Failed: %s", exc)
+
+
 # ============================================================================
 # Scheduler lifecycle
 # ============================================================================
@@ -548,9 +559,11 @@ def start_scheduler() -> BackgroundScheduler:
     * ``scrape_events``   - CronTrigger, daily 06:00 IST
     * ``fetch_weather``   - IntervalTrigger, every 3 hours
     * ``detect_anomalies``- IntervalTrigger, every 30 minutes
+    * ``refresh_disruptions`` - IntervalTrigger, every 5 minutes
+    * ``startup_disruptions`` - DateTrigger, now + 5 s (one-shot)
     * ``startup_events``  - DateTrigger, now + 10 s (one-shot)
-    * ``startup_weather`` - DateTrigger, now + 10 s (one-shot)
-    * ``startup_anomalies``- DateTrigger, now + 10 s (one-shot)
+    * ``startup_weather`` - DateTrigger, now + 2 s (one-shot)
+    * ``startup_anomalies``- DateTrigger, now + 20 s (one-shot)
 
     Returns
     -------
@@ -592,6 +605,15 @@ def start_scheduler() -> BackgroundScheduler:
         misfire_grace_time=120,
     )
 
+    scheduler.add_job(
+        job_refresh_disruptions,
+        trigger=IntervalTrigger(minutes=5),
+        id="refresh_disruptions",
+        name="Disruption & Weather refresh (5m interval)",
+        replace_existing=True,
+        misfire_grace_time=120,
+    )
+
     # -- One-shot startup jobs (staggered to prevent race conditions) -----
     now = datetime.now()
 
@@ -600,6 +622,14 @@ def start_scheduler() -> BackgroundScheduler:
         trigger=DateTrigger(run_date=now + timedelta(seconds=2)),
         id="startup_weather",
         name="Startup: weather fetch",
+        replace_existing=True,
+    )
+
+    scheduler.add_job(
+        job_refresh_disruptions,
+        trigger=DateTrigger(run_date=now + timedelta(seconds=5)),
+        id="startup_disruptions",
+        name="Startup: unified disruptions",
         replace_existing=True,
     )
 

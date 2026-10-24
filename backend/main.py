@@ -225,6 +225,210 @@ def get_current_schedule(corridor: str = 'RED', service: str = 'WK'):
             result.append({'stop_id': stop_id, 'stop_name': name, 'hour': hour, 'headway_min': hw, 'trains_per_hour': round(60/hw, 1)})
     return result
 
+# ── Metro Train Schedule & Terminal Departures (Verified Official GTFS) ────────
+
+@app.get('/metro-schedule/lines')
+def get_metro_schedule_lines():
+    """Return all operational Hyderabad Metro lines, terminal station pairs, and frequencies."""
+    from gtfs.schedule_service import schedule_service
+    return {"lines": schedule_service.get_lines()}
+
+@app.get('/metro-schedule/departures')
+def get_metro_schedule_departures(
+    line: str = "RED",
+    terminal: Optional[str] = None,
+    target_date: Optional[str] = None,
+    reference_time: Optional[str] = None,
+    mode: str = "official",
+):
+    """
+    Return the Next Five Departures with live countdowns, full-day timetable,
+    and mandatory data classifications (Official Scheduled vs Estimated).
+    """
+    from gtfs.schedule_service import schedule_service
+    from datetime import date as dt_date
+
+    parsed_date = None
+    if target_date:
+        try:
+            parsed_date = dt_date.fromisoformat(target_date.strip())
+        except ValueError:
+            parsed_date = None
+
+    default_terminal = "MYP" if line.upper() == "RED" else ("NAG" if line.upper() == "BLUE" else "PRG")
+    active_terminal = terminal or default_terminal
+
+    return schedule_service.get_departures(
+        line=line,
+        terminal=active_terminal,
+        target_date=parsed_date,
+        reference_time_str=reference_time,
+        mode=mode,
+    )
+
+@app.get('/metro-schedule/station-sequence')
+def get_metro_station_sequence(line: str = "RED", direction_id: int = 0):
+    """Return the ordered station sequence for a line and direction with interchange hubs."""
+    from gtfs.schedule_service import schedule_service
+    sequence = schedule_service.get_station_sequence(line=line, direction_id=direction_id)
+    return {
+        "line": line.upper(),
+        "direction_id": direction_id,
+        "total_stations": len(sequence),
+        "stations": sequence,
+    }
+
+class MetroEventCreateRequest(BaseModel):
+    name: str
+    date: str  # YYYY-MM-DD
+    corridor: str = "BLUE"
+    venue_name: Optional[str] = None
+    venue_id: Optional[str] = None
+    nearest_stop_id: Optional[str] = None
+    start_time: str = "18:00"
+    end_time: str = "21:30"
+    expected_attendance: Optional[int] = 10000
+    metro_riders: Optional[int] = None
+    event_type: Optional[str] = "concert"
+
+@app.get('/metro-schedule/events')
+def get_metro_schedule_events(target_date: Optional[str] = None):
+    """Return all active city events for the target date and venue templates."""
+    from utils.event_schedule import get_city_events_for_date, HYDERABAD_VENUES
+    from datetime import date as dt_date
+
+    try:
+        parsed_date = dt_date.fromisoformat(target_date.strip()) if target_date else dt_date.today()
+    except Exception:
+        parsed_date = dt_date.today()
+
+    evs = get_city_events_for_date(parsed_date)
+    venue_list = [
+        {
+            "id": k,
+            "name": v["name"],
+            "corridor": v.get("corridor") or v.get("corridors", ["BLUE"])[0],
+            "nearest_stop_id": v["nearest_stop_id"],
+            "nearest_stop_name": v["nearest_stop_name"],
+            "capacity": v.get("capacity", 15000),
+        }
+        for k, v in HYDERABAD_VENUES.items()
+    ]
+    return {
+        "date": parsed_date.isoformat(),
+        "events_count": len(evs),
+        "events": evs,
+        "available_venues": venue_list,
+    }
+
+@app.post('/metro-schedule/events')
+def create_metro_schedule_event(req: MetroEventCreateRequest):
+    """Add a new scheduled event that dynamically recalculates terminal departure headways."""
+    from utils.event_schedule import HYDERABAD_VENUES, remove_excluded_event_id
+    import uuid
+
+    ev_id = f"ev_user_{uuid.uuid4().hex[:8]}"
+    date_str = req.date.strip()
+
+    # Format start and end timestamps into ISO string
+    s_time = req.start_time.strip()
+    if "T" not in s_time:
+        s_time = f"{date_str}T{s_time}:00" if len(s_time) == 5 else f"{date_str}T{s_time}"
+    e_time = req.end_time.strip()
+    if "T" not in e_time:
+        e_time = f"{date_str}T{e_time}:00" if len(e_time) == 5 else f"{date_str}T{e_time}"
+
+    # Determine venue details
+    venue_info = HYDERABAD_VENUES.get(req.venue_id or "")
+    if venue_info:
+        v_name = venue_info["name"]
+        v_id = req.venue_id
+        v_lat = venue_info["lat"]
+        v_lon = venue_info["lon"]
+        stop_id = venue_info["nearest_stop_id"]
+        stop_name = venue_info["nearest_stop_name"]
+        corridor = venue_info.get("corridor") or venue_info.get("corridors", [req.corridor])[0]
+        capacity = venue_info.get("capacity", req.expected_attendance or 15000)
+    else:
+        v_name = req.venue_name or f"{req.corridor.upper()} Line Corridor Venue"
+        v_id = req.venue_id or "custom_transit_venue"
+        v_lat = 17.4063 if req.corridor.upper() == "BLUE" else (17.4947 if req.corridor.upper() == "RED" else 17.4445)
+        v_lon = 78.5480 if req.corridor.upper() == "BLUE" else (78.3578 if req.corridor.upper() == "RED" else 78.4976)
+        stop_id = req.nearest_stop_id or ("UPL" if req.corridor.upper() == "BLUE" else ("MYP" if req.corridor.upper() == "RED" else "PRG"))
+        stop_name = "Transit Stop"
+        corridor = req.corridor.upper()
+        capacity = req.expected_attendance or 15000
+
+    # Calculate or use provided metro ridership
+    attendance = int(req.expected_attendance or capacity)
+    if req.metro_riders and req.metro_riders > 0:
+        metro_riders = int(req.metro_riders)
+    else:
+        metro_riders = int(attendance * 0.15)  # 15% default transit share
+
+    event_item = {
+        "id": ev_id,
+        "name": req.name.strip(),
+        "event_type": req.event_type or "concert",
+        "venue_name": v_name,
+        "venue_id": v_id,
+        "venue_lat": v_lat,
+        "venue_lon": v_lon,
+        "nearest_stop_id": stop_id,
+        "nearest_station": {
+            "stop_id": stop_id,
+            "stop_name": stop_name,
+            "corridors": [corridor],
+            "distance_km": 0.8,
+        },
+        "corridor": corridor,
+        "date": date_str,
+        "start_time": s_time,
+        "end_time": e_time,
+        "venue_capacity": capacity,
+        "expected_attendance": attendance,
+        "metro_riders": metro_riders,
+        "is_manual": True,
+        "status": "scheduled",
+        "source": "operator_simulator",
+        "event_url": f"https://in.bookmyshow.com/explore/events-hyderabad?search={urllib.parse.quote_plus(req.name)}",
+        "created_at": datetime.now().isoformat(),
+    }
+
+    # Save to manual_events.json
+    all_manual = _load_manual_events()
+    all_manual.append(event_item)
+    _save_manual_events(all_manual)
+
+    # In case this id or name was previously excluded, un-exclude it
+    remove_excluded_event_id(ev_id)
+    remove_excluded_event_id(req.name.strip())
+
+    return {"status": "success", "event": event_item}
+
+@app.delete('/metro-schedule/events/{event_id}')
+def delete_metro_schedule_event(event_id: str):
+    """Remove or exclude an event so headways immediately relax back to baseline."""
+    from utils.event_schedule import add_excluded_event_id
+
+    # 1. If in manual events, remove from list
+    all_manual = _load_manual_events()
+    remaining = [e for e in all_manual if str(e.get('id')) != str(event_id) and e.get('name') != event_id]
+    if len(remaining) != len(all_manual):
+        _save_manual_events(remaining)
+
+    # 2. Add to excluded list so even cached scraped events are filtered out
+    add_excluded_event_id(event_id)
+
+    return {"status": "success", "deleted_id": event_id, "message": "Event removed from schedule calculation."}
+
+@app.post('/metro-schedule/events/reset')
+def reset_metro_schedule_events():
+    """Restore all default scraped events and clear exclusions."""
+    from utils.event_schedule import clear_excluded_events
+    clear_excluded_events()
+    return {"status": "success", "message": "All default live events restored."}
+
 @app.post('/predict/demand')
 def predict_demand(req: DemandRequest):
     """Predict passenger count for a station at a specific hour."""
@@ -584,6 +788,60 @@ def get_active_events():
             }
         enriched.append(item)
     return {'count': len(enriched), 'events': enriched}
+
+# ── Unified Live Disruptions: Events, Weather & Transit ─────────────────────────
+
+@app.get('/disruptions/live')
+def get_live_disruptions(
+    category: Optional[str] = None,
+    severity: Optional[str] = None,
+    corridor: Optional[str] = None,
+    limit: int = 60,
+):
+    """
+    Return unified disruption signals combining live Open-Meteo & OpenWeatherMap telemetry,
+    AllEvents/BookMyShow events, cricket fixtures (International, IPL, Ranji Trophy), and transit alerts.
+    Each disruption includes spatial Metro station proximity and surge estimates.
+    """
+    from scrapers.disruption_service import disruption_service
+    feed = disruption_service.get_disruptions(force_refresh=False)
+    disruptions = feed.get("disruptions", [])
+
+    if category:
+        cat_lower = category.lower().strip()
+        disruptions = [d for d in disruptions if d.get("category", "").lower() == cat_lower]
+
+    if severity:
+        sev_lower = severity.lower().strip()
+        disruptions = [d for d in disruptions if d.get("severity", "").lower() == sev_lower]
+
+    if corridor:
+        cor_upper = corridor.upper().strip()
+        disruptions = [
+            d for d in disruptions
+            if cor_upper in d.get("impact", {}).get("affected_corridors", [])
+        ]
+
+    return {
+        "timestamp": feed.get("timestamp"),
+        "last_updated": feed.get("last_updated"),
+        "total_count": len(feed.get("disruptions", [])),
+        "filtered_count": len(disruptions),
+        "summary": feed.get("summary", {}),
+        "disruptions": disruptions[:limit],
+    }
+
+@app.post('/disruptions/refresh')
+def refresh_disruptions():
+    """Trigger a forced immediate refresh of all live disruption sources."""
+    from scrapers.disruption_service import disruption_service
+    feed = disruption_service.get_disruptions(force_refresh=True)
+    return {
+        "status": "refreshed",
+        "total_active_disruptions": feed.get("total_active_disruptions", 0),
+        "summary": feed.get("summary", {}),
+        "last_updated": feed.get("last_updated"),
+    }
 
 # ── NEW: Demand prediction with live data ─────────────────────────────────────
 

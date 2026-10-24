@@ -175,12 +175,54 @@ def _is_event_seasonally_valid(name: str, event_type: str, target_date: date) ->
 
 
 
+EXCLUDED_EVENTS_FILE = Path(__file__).resolve().parent.parent / 'data' / 'excluded_events.json'
+
+
+def get_excluded_event_ids() -> set[str]:
+    """Return set of event IDs excluded by the user."""
+    if not EXCLUDED_EVENTS_FILE.exists():
+        return set()
+    try:
+        with open(EXCLUDED_EVENTS_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return set(str(x) for x in data)
+    except Exception:
+        return set()
+
+
+def add_excluded_event_id(event_id: str) -> None:
+    """Exclude an event from schedule calculation."""
+    excls = get_excluded_event_ids()
+    excls.add(str(event_id))
+    EXCLUDED_EVENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(EXCLUDED_EVENTS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(list(excls), f, indent=2)
+
+
+def remove_excluded_event_id(event_id: str) -> None:
+    """Un-exclude an event."""
+    excls = get_excluded_event_ids()
+    excls.discard(str(event_id))
+    EXCLUDED_EVENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(EXCLUDED_EVENTS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(list(excls), f, indent=2)
+
+
+def clear_excluded_events() -> None:
+    """Clear all exclusions."""
+    if EXCLUDED_EVENTS_FILE.exists():
+        try:
+            EXCLUDED_EVENTS_FILE.unlink()
+        except Exception:
+            pass
+
+
 def get_city_events_for_date(target_date: date | str) -> List[Dict[str, Any]]:
     """
     Retrieve or dynamically synthesize upcoming Hyderabad events for the target date.
     
-    1. Loads any manual operator events created in the system.
-    2. Looks up genuine events in the live_events.json cache.
+    1. Loads any manual operator events created in the system (skipping excluded events).
+    2. Looks up genuine events in the live_events.json cache (skipping excluded events).
     3. Supplements with authentic venue fixtures for that day of week if needed.
     4. Guarantees each event includes direct event_url links and ML predictions.
     """
@@ -190,6 +232,7 @@ def get_city_events_for_date(target_date: date | str) -> List[Dict[str, Any]]:
     events: List[Dict[str, Any]] = []
     seen_venues = set()
     target_date_str = target_date.strftime('%Y-%m-%d')
+    excluded_ids = get_excluded_event_ids()
 
     # 1. Load manual operator events first
     manual_path = Path(__file__).resolve().parent.parent / 'data' / 'manual_events.json'
@@ -198,6 +241,10 @@ def get_city_events_for_date(target_date: date | str) -> List[Dict[str, Any]]:
             with open(manual_path, 'r', encoding='utf-8') as f:
                 manual_list = json.load(f)
             for m in manual_list:
+                m_id = str(m.get('id', ''))
+                m_name = str(m.get('name', ''))
+                if m_id in excluded_ids or m_name in excluded_ids:
+                    continue
                 m_date = m.get('date') or (m.get('start_time', '')[:10])
                 if m_date == target_date_str:
                     item = dict(m)
@@ -229,6 +276,10 @@ def get_city_events_for_date(target_date: date | str) -> List[Dict[str, Any]]:
     sorted_raw = sorted(raw_cached, key=lambda e: e.get('expected_attendance', 0), reverse=True)
 
     for ev in sorted_raw[:3]:
+        ev_id = str(ev.get('id', ''))
+        ev_name = str(ev.get('name', ''))
+        if ev_id in excluded_ids or ev_name in excluded_ids:
+            continue
         item = dict(ev)
         v_lat = item.get('venue_lat')
 
@@ -362,14 +413,20 @@ def _enrich_event_with_ml(item: Dict[str, Any], target_date: date) -> Dict[str, 
         item['occupancy_rate'] = round(metrics['occupancy_rate'], 3)
         item['expected_attendance'] = metrics['actual_attendance']
         item['metro_fraction'] = round(metrics['metro_mode_share_pct'], 3)
-        item['metro_riders'] = metrics['total_event_metro_riders']
+        if item.get('is_manual') and item.get('metro_riders') and int(item.get('metro_riders')) > 0:
+            item['metro_riders'] = int(item['metro_riders'])
+        else:
+            item['metro_riders'] = metrics['total_event_metro_riders']
         item['model_driven'] = True
     else:
         item['venue_capacity'] = capacity
         item['occupancy_rate'] = 0.40
         item['expected_attendance'] = int(capacity * 0.40)
         item['metro_fraction'] = 0.12
-        item['metro_riders'] = int(item['expected_attendance'] * 0.12)
+        if item.get('is_manual') and item.get('metro_riders') and int(item.get('metro_riders')) > 0:
+            item['metro_riders'] = int(item['metro_riders'])
+        else:
+            item['metro_riders'] = int(item['expected_attendance'] * 0.12)
         item['model_driven'] = False
 
     if not item.get('event_url'):

@@ -1,0 +1,3883 @@
+{
+  "timestamp": 1792819009.9829729,
+  "last_updated": "2026-10-24T05:16:38.898759+00:00",
+  "timezone": "Asia/Kolkata",
+  "total_active_disruptions": 91,
+  "summary": {
+    "by_category": {
+      "event": 88,
+      "weather": 1,
+      "transit": 2
+    },
+    "by_severity": {
+      "high": 12,
+      "medium": 76,
+      "low": 3
+    },
+    "by_corridor": {
+      "RED": 49,
+      "BLUE": 55,
+      "GREEN": 22
+    },
+    "max_predicted_surge_pct": 40.0,
+    "most_impacted_station": "Jubilee Hills Checkpost"
+  },
+  "disruptions": [
+    {
+      "id": "18f851896ea6",
+      "title": "Event: A Telugu Jam - Ananda Music Club at Grease Monkey @ Grease Monkey: Hyderabad",
+      "category": "event",
+      "latitude": 17.428301,
+      "longitude": 78.414001,
+      "location": "Grease Monkey: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/a-telugu-jam-ananda-music-club-at-grease-monkey/3900030881304417",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "grease_monkey_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "JCP",
+        "nearest_station_name": "Jubilee Hills Checkpost",
+        "nearest_station_distance_km": 0.03,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Jubilee Hills Checkpost City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 5
+      }
+    },
+    {
+      "id": "bb284f5f6b2c",
+      "title": "Event: Saketh Komanduri Live by Lake Shore Weekends @ Shott - Lakeshore Mall, Kukatpally: Hyderabad",
+      "category": "event",
+      "latitude": 17.4842,
+      "longitude": 78.4116,
+      "location": "Shott - Lakeshore Mall, Kukatpally: Hyderabad",
+      "startTime": "2026-10-24T19:00:00Z",
+      "endTime": "2026-10-24T22:00:00Z",
+      "severity": "high",
+      "source": "bookmyshow_live",
+      "sourceUrl": "https://in.bookmyshow.com/events/lakeshore-weekends/ET00522566",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "shott_lakeshore_mall_kukatpally_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "KUK",
+        "nearest_station_name": "Kukatpally",
+        "nearest_station_distance_km": 0.08,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 12:30 AM \u2013 03:30 AM",
+        "schedule_display": "25 Oct 2026 \u2022 12:30 AM \u2013 03:30 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "12:30 AM \u2013 03:30 AM",
+        "start_time_ist": "25 Oct 2026, 12:30 AM",
+        "end_time_ist": "25 Oct 2026, 03:30 AM",
+        "feeder_bus_hubs": [
+          "Kukatpally City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "88f48681bd4e",
+      "title": "Event: SPB Lives With SP Charan @ Om Convention: Hyderabad",
+      "category": "event",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "location": "Om Convention: Hyderabad",
+      "startTime": "2026-10-31T05:30:00Z",
+      "endTime": "2026-10-31T08:30:00Z",
+      "severity": "high",
+      "source": "bookmyshow_live",
+      "sourceUrl": "https://in.bookmyshow.com/events/spb-lives-with-sp-charan/ET00522249",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "om_convention_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:00 AM \u2013 02:00 PM",
+        "schedule_display": "31 Oct 2026 \u2022 11:00 AM \u2013 02:00 PM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:00 AM \u2013 02:00 PM",
+        "start_time_ist": "31 Oct 2026, 11:00 AM",
+        "end_time_ist": "31 Oct 2026, 02:00 PM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "01fe22520161",
+      "title": "Event: Aakash Mehta - The Wedding Show (Stand up Comedy) @ Venue To Be Announced: Hyderabad",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "Venue To Be Announced: Hyderabad",
+      "startTime": "2026-12-05T18:00:00Z",
+      "endTime": "2026-12-05",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/aakash-mehta-the-wedding-show-stand-up-comedy/3900030734166704",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "venue_to_be_announced_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "05 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "05 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "05 Dec 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "05 Dec 2026, 11:30 PM",
+        "end_time_ist": "05 Dec 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "a4729c99aa08",
+      "title": "Event: Easter Festival @ Fateh Maidan",
+      "category": "event",
+      "latitude": 17.399334,
+      "longitude": 78.473335,
+      "location": "Fateh Maidan",
+      "startTime": "2027-03-28T18:00:00Z",
+      "endTime": "2027-03-28T21:00:00Z",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/easter-festival/200030774531848",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "fateh_maidan"
+      },
+      "impact": {
+        "nearest_station_id": "ASM",
+        "nearest_station_name": "Assembly",
+        "nearest_station_distance_km": 0.3,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "28 Mar 2027 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "28 Mar 2027 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "28 Mar 2027",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "28 Mar 2027, 11:30 PM",
+        "end_time_ist": "28 Mar 2027, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Assembly City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 9
+      }
+    },
+    {
+      "id": "1172918501b1",
+      "title": "Event: Stand-Up Comedy Night @ Brew Commune Cafe: Hyderabad",
+      "category": "event",
+      "latitude": 17.4527,
+      "longitude": 78.385803,
+      "location": "Brew Commune Cafe: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/stand-up-comedy-night/3900030889602238",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "brew_commune_cafe_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "HTC",
+        "nearest_station_name": "HITEC City",
+        "nearest_station_distance_km": 0.5,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "HITEC City City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "c2e5b831e44d",
+      "title": "Event: Indian Photo Festival @ State Gallery of Art",
+      "category": "event",
+      "latitude": 17.440054,
+      "longitude": 78.395897,
+      "location": "State Gallery of Art",
+      "startTime": "2026-11-26T18:00:00Z",
+      "endTime": "2026-11-26",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/indian-photo-festival/100002003323565713",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "state_gallery_of_art"
+      },
+      "impact": {
+        "nearest_station_id": "MAD",
+        "nearest_station_name": "Madhapur",
+        "nearest_station_distance_km": 0.57,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "26 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "26 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "26 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "26 Nov 2026, 11:30 PM",
+        "end_time_ist": "26 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Madhapur City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "9ce69f3d533b",
+      "title": "Event: Chaaya Literature Festival @ BR Ambedkar Open University - BRAOU",
+      "category": "event",
+      "latitude": 17.43153,
+      "longitude": 78.395058,
+      "location": "BR Ambedkar Open University - BRAOU",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-15",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/chaaya-literature-festival/200030848690556",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "br_ambedkar_open_university_braou"
+      },
+      "impact": {
+        "nearest_station_id": "MAD",
+        "nearest_station_name": "Madhapur",
+        "nearest_station_distance_km": 0.85,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Madhapur City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "75deee69494a",
+      "title": "Event: Papon Live In Concert @ Nexus Hyderabad Mall",
+      "category": "event",
+      "latitude": 17.484198,
+      "longitude": 78.388962,
+      "location": "Nexus Hyderabad Mall",
+      "startTime": "2026-11-28T18:00:00Z",
+      "endTime": "2026-11-28",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/papon-live-in-concert/4100030622267646",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "nexus_hyderabad_mall"
+      },
+      "impact": {
+        "nearest_station_id": "JNT",
+        "nearest_station_name": "JNTU College",
+        "nearest_station_distance_km": 1.61,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "28 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "28 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "28 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "28 Nov 2026, 11:30 PM",
+        "end_time_ist": "28 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "JNTU College City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "92c1c73d3e15",
+      "title": "Event: Finding Love : Standup Comedy Solo By Vaibhav Karn @ The Comedy Theatre: Hyderabad.",
+      "category": "event",
+      "latitude": 17.441401,
+      "longitude": 78.358803,
+      "location": "The Comedy Theatre: Hyderabad.",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24T21:00:00Z",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/finding-love-standup-comedy-solo-by-vaibhav-karn/3900030718967409",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "the_comedy_theatre_hyderabad_"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.95,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "ddd9bc9ef257",
+      "title": "Event: Arvind Sunder Live a stand up comedy show @ The Comedy Theatre: Hyderabad.",
+      "category": "event",
+      "latitude": 17.441401,
+      "longitude": 78.358803,
+      "location": "The Comedy Theatre: Hyderabad.",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-14",
+      "severity": "high",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/arvind-sunder-live-a-stand-up-comedy-show/3900030747591149",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "the_comedy_theatre_hyderabad_"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.95,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 40.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "140d26d519d6",
+      "title": "Event: Bhajan Jamming : Sunitha Upadrasta @ Sandhya Convention: Hyderabad",
+      "category": "event",
+      "latitude": 17.4399,
+      "longitude": 78.349,
+      "location": "Sandhya Convention: Hyderabad",
+      "startTime": "2026-10-24T05:30:00Z",
+      "endTime": "2026-10-24T08:30:00Z",
+      "severity": "high",
+      "source": "bookmyshow_live",
+      "sourceUrl": "https://in.bookmyshow.com/events/bhajan-jamming-sunitha-upadrasta/ET00521075",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "concert",
+        "expected_attendance": 15000,
+        "crowd_estimate": "high",
+        "venue_id": "sandhya_convention_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.0,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Major public event (15,000 attendees) generating concentrated ingress/egress surges.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:00 AM \u2013 02:00 PM",
+        "schedule_display": "24 Oct 2026 \u2022 11:00 AM \u2013 02:00 PM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:00 AM \u2013 02:00 PM",
+        "start_time_ist": "24 Oct 2026, 11:00 AM",
+        "end_time_ist": "24 Oct 2026, 02:00 PM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "000467cdf313",
+      "title": "Event: Sunriser 2.0 Ft. DJ Sahil @ Summer Bistro",
+      "category": "event",
+      "latitude": 17.429802,
+      "longitude": 78.424576,
+      "location": "Summer Bistro",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/sunriser-20-ft-dj-sahil-tickets/80002189340433",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "summer_bistro"
+      },
+      "impact": {
+        "nearest_station_id": "JR5",
+        "nearest_station_name": "Road No 5 Jubilee Hills",
+        "nearest_station_distance_km": 0.15,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Road No 5 Jubilee Hills City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 7
+      }
+    },
+    {
+      "id": "5b34ee77d716",
+      "title": "Event: Khane Ka Bazaar Season 3 @ Public Garden Road",
+      "category": "event",
+      "latitude": 17.394461,
+      "longitude": 78.470306,
+      "location": "Public Garden Road",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/khane-ka-bazaar-season-3/100002001968908898",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "public_garden_road"
+      },
+      "impact": {
+        "nearest_station_id": "NAM",
+        "nearest_station_name": "Nampally",
+        "nearest_station_distance_km": 0.25,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Nampally City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 9
+      }
+    },
+    {
+      "id": "ca16e9460789",
+      "title": "Event: GANSID 4th International Congress for Sickle Cell and Inherited Blood Disorders @ HYDERABAD INTERNATIONAL CONVENTION CENTRE-HICC, Izzathnagar, Kothaguda, Hyderabad, Telangana, India",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "HYDERABAD INTERNATIONAL CONVENTION CENTRE-HICC, Izzathnagar, Kothaguda, Hyderabad, Telangana, India",
+      "startTime": "2026-10-23T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/gansid-4th-international-congress-for-sickle-cell-and-inherited-blood-disorders/80006821000294",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hyderabad_international_convention_centre_hicc_izzathnagar_kothaguda_hyderabad_telangana_india"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "23 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "23 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "23 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "23 Oct 2026, 11:30 PM",
+        "end_time_ist": "23 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "73c9af5fb1cf",
+      "title": "Event: The Biggest Real Estate Event in Hyderabad 2026  Inch & Brick Realty @ The Westin Hyderabad Mindspace",
+      "category": "event",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "location": "The Westin Hyderabad Mindspace",
+      "startTime": "2026-10-24T10:00:00Z",
+      "endTime": "2026-10-24T13:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live",
+      "sourceUrl": "https://allevents.in/hyderabad/the-biggest-real-estate-event-in-hyderabad-2026-inch-and-brick-realty-tickets/80003433220283",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_westin_hyderabad_mindspace"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 03:30 PM \u2013 06:30 PM",
+        "schedule_display": "24 Oct 2026 \u2022 03:30 PM \u2013 06:30 PM",
+        "date_str": "24 Oct 2026",
+        "time_str": "03:30 PM \u2013 06:30 PM",
+        "start_time_ist": "24 Oct 2026, 03:30 PM",
+        "end_time_ist": "24 Oct 2026, 06:30 PM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "07713e7f71c5",
+      "title": "Event: PinkFloyd & Linkin Park Tribute ft. String on Fire @ Hard Rock Cafe Hitech City: Hyderabad",
+      "category": "event",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "location": "Hard Rock Cafe Hitech City: Hyderabad",
+      "startTime": "2026-10-24T21:00:00Z",
+      "endTime": "2026-10-25T00:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live",
+      "sourceUrl": "https://allevents.in/hyderabad/pinkfloyd-and-linkin-park-tribute-ft-string-on-fire/3900030745031915",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hard_rock_cafe_hitech_city_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 02:30 AM \u2013 05:30 AM",
+        "schedule_display": "25 Oct 2026 \u2022 02:30 AM \u2013 05:30 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "02:30 AM \u2013 05:30 AM",
+        "start_time_ist": "25 Oct 2026, 02:30 AM",
+        "end_time_ist": "25 Oct 2026, 05:30 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "4af9ef20a025",
+      "title": "Event: PGP YL Insights Meet ISB Faculty Students & the Admissions Team on Campus @ ISB Campus, Khemka Auditorium",
+      "category": "event",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "location": "ISB Campus, Khemka Auditorium",
+      "startTime": "2026-10-25T11:00:00Z",
+      "endTime": "2026-10-25T14:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live",
+      "sourceUrl": "https://allevents.in/hyderabad/pgp-yl-insights-meet-isb-faculty-students-and-the-admissions-team-on-campus/100002003046843028",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "isb_campus_khemka_auditorium"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 04:30 PM \u2013 07:30 PM",
+        "schedule_display": "25 Oct 2026 \u2022 04:30 PM \u2013 07:30 PM",
+        "date_str": "25 Oct 2026",
+        "time_str": "04:30 PM \u2013 07:30 PM",
+        "start_time_ist": "25 Oct 2026, 04:30 PM",
+        "end_time_ist": "25 Oct 2026, 07:30 PM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "47df8ae08743",
+      "title": "Event: THE BUSINESS ORBIT  Hyderabads Business Networking & Services Marketplace @ NanoSpace Coworking Nanakramguda Branch",
+      "category": "event",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "location": "NanoSpace Coworking Nanakramguda Branch",
+      "startTime": "2026-10-31T09:30:00Z",
+      "endTime": "2026-10-31T12:30:00Z",
+      "severity": "medium",
+      "source": "allevents_live",
+      "sourceUrl": "https://allevents.in/hyderabad/the-business-orbit-hyderabads-business-networking-and-services-marketplace/100002003280486863",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "nanospace_coworking_nanakramguda_branch"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 03:00 PM \u2013 06:00 PM",
+        "schedule_display": "31 Oct 2026 \u2022 03:00 PM \u2013 06:00 PM",
+        "date_str": "31 Oct 2026",
+        "time_str": "03:00 PM \u2013 06:00 PM",
+        "start_time_ist": "31 Oct 2026, 03:00 PM",
+        "end_time_ist": "31 Oct 2026, 06:00 PM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "f581bd916a60",
+      "title": "Event: Anime Multiverse : Cosplay Edition Season 2 @ Venue To Be Announced: Hyderabad",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "Venue To Be Announced: Hyderabad",
+      "startTime": "2026-11-07T18:00:00Z",
+      "endTime": "2027-01-09",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/anime-multiverse-cosplay-edition-season-2/3900030148336431",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "venue_to_be_announced_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "07 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "07 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "07 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "07 Nov 2026, 11:30 PM",
+        "end_time_ist": "07 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "8826f4485545",
+      "title": "Event: Madhubanti Bagchi in Hyderabad @ Nexus Hyderabad Mall: Hyderabad",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "Nexus Hyderabad Mall: Hyderabad",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-14",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/madhubanti-bagchi-in-hyderabad/3300030436751001",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "nexus_hyderabad_mall_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "fc55282a43d3",
+      "title": "Event: MSME Business Networking | Hyderabad 2026 @ The Headquarters Orbit",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "The Headquarters Orbit",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-14",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/msme-business-networking-hyderabad-2026-tickets/80003159860674",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_headquarters_orbit"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "1ed7138b3ea7",
+      "title": "Event: WFC Entrepreneurs Meet | Hyderabad 2026 @ The Headquarters Orbit",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "The Headquarters Orbit",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-14",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/wfc-entrepreneurs-meet-hyderabad-2026-tickets/80002170804410",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_headquarters_orbit"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "f352106ea410",
+      "title": "Event: BANGTANVERSE CARNIVAL - FAN TOUR @ Venue To Be Announced: Hyderabad",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "Venue To Be Announced: Hyderabad",
+      "startTime": "2026-11-15T18:00:00Z",
+      "endTime": "2026-11-15",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/bangtanverse-carnival-fan-tour/3900030675826608",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "venue_to_be_announced_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "15 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "15 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "15 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "15 Nov 2026, 11:30 PM",
+        "end_time_ist": "15 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "03b5ebff54c9",
+      "title": "Event: AD Design Show 2026 - Hyderabad @ HITEX Exhibition Center: Hyderabad",
+      "category": "event",
+      "latitude": 17.385044,
+      "longitude": 78.486671,
+      "location": "HITEX Exhibition Center: Hyderabad",
+      "startTime": "2026-12-11T18:00:00Z",
+      "endTime": "2026-12-11T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/ad-design-show-2026-hyderabad/3900030021253400",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hitex_exhibition_center_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "11 Dec 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "11 Dec 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "11 Dec 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "11 Dec 2026, 11:30 PM",
+        "end_time_ist": "11 Dec 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "8e29a197d340",
+      "title": "Event: holi @ Fateh Maidan",
+      "category": "event",
+      "latitude": 17.399334,
+      "longitude": 78.473335,
+      "location": "Fateh Maidan",
+      "startTime": "2027-03-22T18:00:00Z",
+      "endTime": "2027-03-22T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/holi/200030774531344",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "fateh_maidan"
+      },
+      "impact": {
+        "nearest_station_id": "ASM",
+        "nearest_station_name": "Assembly",
+        "nearest_station_distance_km": 0.3,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "22 Mar 2027 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "22 Mar 2027 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "22 Mar 2027",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "22 Mar 2027, 11:30 PM",
+        "end_time_ist": "22 Mar 2027, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Assembly City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 9
+      }
+    },
+    {
+      "id": "4afeb2caa48b",
+      "title": "Event: Telling Lies -A Standup Solo by Aashish Solanki @ KLN Prasad Auditorium - FTCCI: Hyderabad",
+      "category": "event",
+      "latitude": 17.4006,
+      "longitude": 78.465202,
+      "location": "KLN Prasad Auditorium - FTCCI: Hyderabad",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/telling-lies-a-standup-solo-by-aashish-solanki/3900030598974832",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "kln_prasad_auditorium_ftcci_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "LKP",
+        "nearest_station_name": "Lakdi-ka-pul",
+        "nearest_station_distance_km": 0.38,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Lakdi-ka-pul City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "c63f3f97a1e8",
+      "title": "Event: All India CLAT LR Tour @ KLN Prasad Auditorium - FTCCI: Hyderabad",
+      "category": "event",
+      "latitude": 17.4006,
+      "longitude": 78.465202,
+      "location": "KLN Prasad Auditorium - FTCCI: Hyderabad",
+      "startTime": "2026-11-01T18:00:00Z",
+      "endTime": "2026-11-01",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/all-india-clat-lr-tour/3900030763986353",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "kln_prasad_auditorium_ftcci_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "LKP",
+        "nearest_station_name": "Lakdi-ka-pul",
+        "nearest_station_distance_km": 0.38,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "01 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "01 Nov 2026, 11:30 PM",
+        "end_time_ist": "01 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Lakdi-ka-pul City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "e1cbccdc58f0",
+      "title": "Event: FREE ACTING WORKSHOP @ Kln Prasad Auditorium",
+      "category": "event",
+      "latitude": 17.400528,
+      "longitude": 78.465149,
+      "location": "Kln Prasad Auditorium",
+      "startTime": "2026-11-01T18:00:00Z",
+      "endTime": "2026-11-01T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/free-acting-workshop/200030730194109",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "kln_prasad_auditorium"
+      },
+      "impact": {
+        "nearest_station_id": "LKP",
+        "nearest_station_name": "Lakdi-ka-pul",
+        "nearest_station_distance_km": 0.39,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "01 Nov 2026, 11:30 PM",
+        "end_time_ist": "01 Nov 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Lakdi-ka-pul City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "8ad92ff493f7",
+      "title": "Event: GoSwadeshi by GoCoop, Hyderabad, Kamma Sangham @ Kamma Sangam Ameerpet",
+      "category": "event",
+      "latitude": 17.430899,
+      "longitude": 78.447571,
+      "location": "Kamma Sangam Ameerpet",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-11-01",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/goswadeshi-by-gocoop-hyderabad-kamma-sangham/200030835549448",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "kamma_sangam_ameerpet"
+      },
+      "impact": {
+        "nearest_station_id": "PUN",
+        "nearest_station_name": "Panjagutta",
+        "nearest_station_distance_km": 0.42,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Panjagutta City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 9
+      }
+    },
+    {
+      "id": "9c60d3075349",
+      "title": "Event: THAPASYA @ Bhaskara Auditorium",
+      "category": "event",
+      "latitude": 17.40328,
+      "longitude": 78.469109,
+      "location": "Bhaskara Auditorium",
+      "startTime": "2026-11-24T18:00:00Z",
+      "endTime": "2026-11-24",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/thapasya/200030861725200",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "bhaskara_auditorium"
+      },
+      "impact": {
+        "nearest_station_id": "LKP",
+        "nearest_station_name": "Lakdi-ka-pul",
+        "nearest_station_distance_km": 0.45,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "24 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "24 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "24 Nov 2026, 11:30 PM",
+        "end_time_ist": "24 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Lakdi-ka-pul City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 7
+      }
+    },
+    {
+      "id": "594a402d81e0",
+      "title": "Event: Don't Give Your Best by Rahul Subramanian @ Shilpakala Vedika: Hyderabad",
+      "category": "event",
+      "latitude": 17.451401,
+      "longitude": 78.379501,
+      "location": "Shilpakala Vedika: Hyderabad",
+      "startTime": "2026-11-29T18:00:00Z",
+      "endTime": "2026-11-29",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/dont-give-your-best-by-rahul-subramanian/3900030683778035",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "shilpakala_vedika_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "HTC",
+        "nearest_station_name": "HITEC City",
+        "nearest_station_distance_km": 0.47,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "29 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "29 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "29 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "29 Nov 2026, 11:30 PM",
+        "end_time_ist": "29 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "HITEC City City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 3
+      }
+    },
+    {
+      "id": "2f928291570f",
+      "title": "Event: Cinetaria Networking Meet on: Booming Luxury Real Estate in India @ Shilpakala Vedika",
+      "category": "event",
+      "latitude": 17.451433,
+      "longitude": 78.379517,
+      "location": "Shilpakala Vedika",
+      "startTime": "2026-11-29T18:00:00Z",
+      "endTime": "2026-11-29",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/cinetaria-networking-meet-on-booming-luxury-real-estate-in-india-tickets/80003550934934",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "shilpakala_vedika"
+      },
+      "impact": {
+        "nearest_station_id": "HTC",
+        "nearest_station_name": "HITEC City",
+        "nearest_station_distance_km": 0.47,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "29 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "29 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "29 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "29 Nov 2026, 11:30 PM",
+        "end_time_ist": "29 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "HITEC City City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 3
+      }
+    },
+    {
+      "id": "e6e263bfc770",
+      "title": "Event: Jammers - Jamming Truly 12th Edition @ Bhaskara Auditorium",
+      "category": "event",
+      "latitude": 17.403259,
+      "longitude": 78.469398,
+      "location": "Bhaskara Auditorium",
+      "startTime": "2026-11-15T18:00:00Z",
+      "endTime": "2026-11-15",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/jammers-jamming-truly-12th-edition/4100030838468150",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "bhaskara_auditorium"
+      },
+      "impact": {
+        "nearest_station_id": "LKP",
+        "nearest_station_name": "Lakdi-ka-pul",
+        "nearest_station_distance_km": 0.48,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "15 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "15 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "15 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "15 Nov 2026, 11:30 PM",
+        "end_time_ist": "15 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Lakdi-ka-pul City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 7
+      }
+    },
+    {
+      "id": "644f2cd3cc19",
+      "title": "Event: Ritabrata Live @ The Street Comedy Club: Hyderabad",
+      "category": "event",
+      "latitude": 17.4533,
+      "longitude": 78.385201,
+      "location": "The Street Comedy Club: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/ritabrata-live/3900030619717048",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_street_comedy_club_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "HTC",
+        "nearest_station_name": "HITEC City",
+        "nearest_station_distance_km": 0.53,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "HITEC City City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "bd77d6596753",
+      "title": "Event: QS Discover Master's Fair in Hyderabad @ ITC Kakatiya, a Luxury Collection Hotel, Hyderabad",
+      "category": "event",
+      "latitude": 17.432514,
+      "longitude": 78.457352,
+      "location": "ITC Kakatiya, a Luxury Collection Hotel, Hyderabad",
+      "startTime": "2026-12-12T18:00:00Z",
+      "endTime": "2026-12-12",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/qs-discover-masters-fair-in-hyderabad/100001998748315015",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "itc_kakatiya_a_luxury_collection_hotel_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "BEG",
+        "nearest_station_name": "Begumpet",
+        "nearest_station_distance_km": 0.56,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "12 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "12 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "12 Dec 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "12 Dec 2026, 11:30 PM",
+        "end_time_ist": "12 Dec 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Begumpet City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 9
+      }
+    },
+    {
+      "id": "86f4ae882427",
+      "title": "Event: Tomorrowland Thailand 2026 @ Road No 5, Jubliee Hills, Hyderabad, Telangana, India",
+      "category": "event",
+      "latitude": 17.425329,
+      "longitude": 78.408463,
+      "location": "Road No 5, Jubliee Hills, Hyderabad, Telangana, India",
+      "startTime": "2026-12-11T18:00:00Z",
+      "endTime": "2026-12-11T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/tomorrowland-thailand-2026/200030840186029",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "road_no_5_jubliee_hills_hyderabad_telangana_india"
+      },
+      "impact": {
+        "nearest_station_id": "PED",
+        "nearest_station_name": "Peddamma Gudi",
+        "nearest_station_distance_km": 0.59,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "11 Dec 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "11 Dec 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "11 Dec 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "11 Dec 2026, 11:30 PM",
+        "end_time_ist": "11 Dec 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Peddamma Gudi City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 5
+      }
+    },
+    {
+      "id": "957fd11fcc41",
+      "title": "Event: World Data Center Summit - India @ THE PARK HYDERABAD",
+      "category": "event",
+      "latitude": 17.423517,
+      "longitude": 78.462547,
+      "location": "THE PARK HYDERABAD",
+      "startTime": "2026-12-16T18:00:00Z",
+      "endTime": "2026-12-16",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/world-data-center-summit-india-tickets/80002557113801",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "tech_summit",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_park_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "IRM",
+        "nearest_station_name": "Erra Manzil",
+        "nearest_station_distance_km": 0.75,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "16 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "16 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "16 Dec 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "16 Dec 2026, 11:30 PM",
+        "end_time_ist": "16 Dec 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Erra Manzil City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 7
+      }
+    },
+    {
+      "id": "285db764e0d6",
+      "title": "Event: Free Meditation Training Program (Hyderabad, India) @ Srinagar colony",
+      "category": "event",
+      "latitude": 17.431099,
+      "longitude": 78.433952,
+      "location": "Srinagar colony",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/free-meditation-training-program-hyderabad-india/200030784993017",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "srinagar_colony"
+      },
+      "impact": {
+        "nearest_station_id": "YUG",
+        "nearest_station_name": "Yusufguda",
+        "nearest_station_distance_km": 0.83,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Yusufguda City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 8
+      }
+    },
+    {
+      "id": "26fd586e543a",
+      "title": "Event: The Iron Maiden Experience Ft. Maiden Voyage @ Hard Rock Cafe: Hyderabad",
+      "category": "event",
+      "latitude": 17.4193,
+      "longitude": 78.448303,
+      "location": "Hard Rock Cafe: Hyderabad",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/the-iron-maiden-experience-ft-maiden-voyage/3900030762805613",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hard_rock_cafe_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "IRM",
+        "nearest_station_name": "Erra Manzil",
+        "nearest_station_distance_km": 0.86,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Erra Manzil City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 7
+      }
+    },
+    {
+      "id": "7c4697d6faff",
+      "title": "Event: GLOBAL STARTUPS CLUB | STARTUP NETWORKING HYDERABAD 2026 @ The Headquarters Orbit",
+      "category": "event",
+      "latitude": 17.434124,
+      "longitude": 78.376633,
+      "location": "The Headquarters Orbit",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-14",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/global-startups-club-startup-networking-hyderabad-2026-tickets/80004004333615",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_headquarters_orbit"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 0.88,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 3
+      }
+    },
+    {
+      "id": "35489353e3a3",
+      "title": "Event: Remembering Jacques Tati | PLAYTIME | Film Screening @ Lamakaan - An Open Cultural Space",
+      "category": "event",
+      "latitude": 17.421064,
+      "longitude": 78.447426,
+      "location": "Lamakaan - An Open Cultural Space",
+      "startTime": "2026-10-28T18:00:00Z",
+      "endTime": "2026-10-28",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/remembering-jacques-tati-playtime-film-screening/200030856430159",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "lamakaan_an_open_cultural_space"
+      },
+      "impact": {
+        "nearest_station_id": "PUN",
+        "nearest_station_name": "Panjagutta",
+        "nearest_station_distance_km": 0.95,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "28 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "28 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "28 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "28 Oct 2026, 11:30 PM",
+        "end_time_ist": "28 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Panjagutta City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "e5b386e04fb6",
+      "title": "Event: WISH Spooktacular @ Wish Banjara Hills-Preschool &amp; Daycare: Hyderabad",
+      "category": "event",
+      "latitude": 17.426399,
+      "longitude": 78.431801,
+      "location": "Wish Banjara Hills-Preschool &amp; Daycare: Hyderabad",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/wish-spooktacular/3900030599671217",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "wish_banjara_hills_preschool_amp_daycare_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "JR5",
+        "nearest_station_name": "Road No 5 Jubilee Hills",
+        "nearest_station_distance_km": 1.0,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Road No 5 Jubilee Hills City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 7
+      }
+    },
+    {
+      "id": "ca727f3410a9",
+      "title": "Event: Diwali - TimeKids Nallakunta @ H. No.1-8-725/B/3, Lane Beside Reliance SMART Point, Vegetable Market Lane, New Nallakunta, Hyderabad, Telangana, 500044",
+      "category": "event",
+      "latitude": 17.3995,
+      "longitude": 78.504601,
+      "location": "H. No.1-8-725/B/3, Lane Beside Reliance SMART Point, Vegetable Market Lane, New Nallakunta, Hyderabad, Telangana, 500044",
+      "startTime": "2026-11-08T18:00:00Z",
+      "endTime": "2026-11-08T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/diwali-timekids-nallakunta/200030535296702",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "h_no_1_8_725_b_3_lane_beside_reliance_smart_point_vegetable_market_lane_new_nallakunta_hyderabad_telangana_500044"
+      },
+      "impact": {
+        "nearest_station_id": "CDP",
+        "nearest_station_name": "Chikkadpally",
+        "nearest_station_distance_km": 1.03,
+        "affected_corridors": [
+          "GREEN"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "08 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "08 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "08 Nov 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "08 Nov 2026, 11:30 PM",
+        "end_time_ist": "08 Nov 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Chikkadpally City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "ae1d66ccef0a",
+      "title": "Event: Retro To Metro - Tamil Jamming Hyderabad @ Akan: Hyderabad",
+      "category": "event",
+      "latitude": 17.433599,
+      "longitude": 78.387901,
+      "location": "Akan: Hyderabad",
+      "startTime": "2026-11-01T18:00:00Z",
+      "endTime": "2026-11-01",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/retro-to-metro-tamil-jamming-hyderabad/3900030754345018",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "akan_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "DGC",
+        "nearest_station_name": "Durgam Cheruvu",
+        "nearest_station_distance_km": 1.04,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "01 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "01 Nov 2026, 11:30 PM",
+        "end_time_ist": "01 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Durgam Cheruvu City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 5
+      }
+    },
+    {
+      "id": "6de7cfa9a9bb",
+      "title": "Event: Radhe radhe @ Vijaya Nagar Colony",
+      "category": "event",
+      "latitude": 17.398438,
+      "longitude": 78.456787,
+      "location": "Vijaya Nagar Colony",
+      "startTime": "2026-11-08T18:00:00Z",
+      "endTime": "2026-11-08",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/radhe-radhe/200030743879843",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "vijaya_nagar_colony"
+      },
+      "impact": {
+        "nearest_station_id": "LKP",
+        "nearest_station_name": "Lakdi-ka-pul",
+        "nearest_station_distance_km": 1.07,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "08 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "08 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "08 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "08 Nov 2026, 11:30 PM",
+        "end_time_ist": "08 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Lakdi-ka-pul City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 6
+      }
+    },
+    {
+      "id": "d70af976e399",
+      "title": "Event: PinkFloyd &amp; Linkin Park Tribute ft. String on Fire @ Hard Rock Cafe Hitech City: Hyderabad",
+      "category": "event",
+      "latitude": 17.432899,
+      "longitude": 78.382401,
+      "location": "Hard Rock Cafe Hitech City: Hyderabad",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/pinkfloyd-and-linkin-park-tribute-ft-string-on-fire/3900030745031915",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hard_rock_cafe_hitech_city_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.15,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "ff63f606b61b",
+      "title": "Event: Halloween Special Ft. Root Three Five @ Hard Rock Cafe Hitech City: Hyderabad",
+      "category": "event",
+      "latitude": 17.432899,
+      "longitude": 78.382401,
+      "location": "Hard Rock Cafe Hitech City: Hyderabad",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/halloween-special-ft-root-three-five/3900030756970832",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hard_rock_cafe_hitech_city_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.15,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "acf25dd5b6af",
+      "title": "Event: OG TOUR INDIA WITH THAMAN - LIVE IN HYDERABAD @ Venue To Be Announced: Hyderabad",
+      "category": "event",
+      "latitude": 17.406498,
+      "longitude": 78.477242,
+      "location": "Venue To Be Announced: Hyderabad",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/og-tour-india-with-thaman-live-in-hyderabad/3900030309338416",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "venue_to_be_announced_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "ASM",
+        "nearest_station_name": "Assembly",
+        "nearest_station_distance_km": 1.16,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Assembly City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 8
+      }
+    },
+    {
+      "id": "2fb64386cb12",
+      "title": "Event: Hyderabad Entrepreneurship Summit (HES) 2026 | TiE Hyderabad @ Hyderabad",
+      "category": "event",
+      "latitude": 17.406498,
+      "longitude": 78.477242,
+      "location": "Hyderabad",
+      "startTime": "2026-11-20T18:00:00Z",
+      "endTime": "2026-11-20",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/hyderabad-entrepreneurship-summit-hes-2026-tie-hyderabad/80002323089992",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "tech_summit",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "ASM",
+        "nearest_station_name": "Assembly",
+        "nearest_station_distance_km": 1.16,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "20 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "20 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "20 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "20 Nov 2026, 11:30 PM",
+        "end_time_ist": "20 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Assembly City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 8
+      }
+    },
+    {
+      "id": "9efbbe9ec5aa",
+      "title": "Event: Perfume Making Workshop at Underdoggs @ Underdoggs: Hyderabad",
+      "category": "event",
+      "latitude": 17.431101,
+      "longitude": 78.3797,
+      "location": "Underdoggs: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/perfume-making-workshop-at-underdoggs/3900030882692923",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "underdoggs_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.24,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "ad78afb03111",
+      "title": "Event: Run for Child Health 2026 @ Sanjeevaiah Park",
+      "category": "event",
+      "latitude": 17.432076,
+      "longitude": 78.475388,
+      "location": "Sanjeevaiah Park",
+      "startTime": "2026-11-29T18:00:00Z",
+      "endTime": "2026-11-29",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/run-for-child-health-2026-tickets/80003514888772",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "sanjeevaiah_park"
+      },
+      "impact": {
+        "nearest_station_id": "ROP",
+        "nearest_station_name": "Rasoolpura",
+        "nearest_station_distance_km": 1.29,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 20.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "29 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "29 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "29 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "29 Nov 2026, 11:30 PM",
+        "end_time_ist": "29 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Rasoolpura City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 5
+      }
+    },
+    {
+      "id": "c0e7e945a9e4",
+      "title": "Event: Lakhwinder Wadali India Tour - Hyderabad @ Nexus Hyderabad Mall, Kukatpally: Hyderabad",
+      "category": "event",
+      "latitude": 17.484201,
+      "longitude": 78.388954,
+      "location": "Nexus Hyderabad Mall, Kukatpally: Hyderabad",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/lakhwinder-wadali-india-tour-hyderabad/3900030731801020",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "nexus_hyderabad_mall_kukatpally_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "JNT",
+        "nearest_station_name": "JNTU College",
+        "nearest_station_distance_km": 1.61,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "JNTU College City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 4
+      }
+    },
+    {
+      "id": "5b2c3b08b866",
+      "title": "Event: Jammers Quiet Set - October Edition II @ The Moonshine Project",
+      "category": "event",
+      "latitude": 17.414291,
+      "longitude": 78.407661,
+      "location": "The Moonshine Project",
+      "startTime": "2026-10-28T18:00:00Z",
+      "endTime": "2026-10-28",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/jammers-quiet-set-october-edition-ii/4100030755974244",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_moonshine_project"
+      },
+      "impact": {
+        "nearest_station_id": "JCP",
+        "nearest_station_name": "Jubilee Hills Checkpost",
+        "nearest_station_distance_km": 1.67,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "28 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "28 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "28 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "28 Oct 2026, 11:30 PM",
+        "end_time_ist": "28 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Jubilee Hills Checkpost City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 3
+      }
+    },
+    {
+      "id": "ba7330310ff7",
+      "title": "Event: PITCHX Hyderabad @ The Botanika Club Botanika",
+      "category": "event",
+      "latitude": 17.449747,
+      "longitude": 78.361069,
+      "location": "The Botanika Club Botanika",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/pitchx-hyderabad-tickets/80001715307099",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_botanika_club_botanika"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.92,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 2
+      }
+    },
+    {
+      "id": "a3bb32511295",
+      "title": "Event: I AM WORTH IT Ft. Rajat Sood @ The Comedy Theatre: Hyderabad.",
+      "category": "event",
+      "latitude": 17.441401,
+      "longitude": 78.358803,
+      "location": "The Comedy Theatre: Hyderabad.",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/i-am-worth-it-ft-rajat-sood/3900030751448315",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_comedy_theatre_hyderabad_"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.95,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "1c862b916cf9",
+      "title": "Event: Kuch Bhi Mat Bol- Rohit Shah @ The Comedy Theatre: Hyderabad.",
+      "category": "event",
+      "latitude": 17.441401,
+      "longitude": 78.358803,
+      "location": "The Comedy Theatre: Hyderabad.",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/kuch-bhi-mat-bol-rohit-shah/3900030572297742",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_comedy_theatre_hyderabad_"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.95,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "6f77d5d05b6b",
+      "title": "Event: Beta Male by Varun Nair @ The Comedy Theatre: Hyderabad.",
+      "category": "event",
+      "latitude": 17.441401,
+      "longitude": 78.358803,
+      "location": "The Comedy Theatre: Hyderabad.",
+      "startTime": "2026-11-15T18:00:00Z",
+      "endTime": "2026-11-15",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/beta-male-by-varun-nair/3900030662346521",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_comedy_theatre_hyderabad_"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 1.95,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "15 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "15 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "15 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "15 Nov 2026, 11:30 PM",
+        "end_time_ist": "15 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "074d73f5d0e6",
+      "title": "Event: EAW Global Aqua Expo 2027 @ hitex",
+      "category": "event",
+      "latitude": 17.4671,
+      "longitude": 78.375671,
+      "location": "hitex",
+      "startTime": "2027-01-22T18:00:00Z",
+      "endTime": "2027-01-24",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/eaw-global-aqua-expo-2027/100001999669060991",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "exhibition",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hitex"
+      },
+      "impact": {
+        "nearest_station_id": "HTC",
+        "nearest_station_name": "HITEC City",
+        "nearest_station_distance_km": 2.16,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "22 Jan 2027 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "22 Jan 2027 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "22 Jan 2027",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "22 Jan 2027, 11:30 PM",
+        "end_time_ist": "22 Jan 2027, 12:00 AM",
+        "feeder_bus_hubs": [
+          "HITEC City City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "a5709ab79817",
+      "title": "Event: Global Pharma Partnering Summit @ JRC Conventions &amp; Trade Fairs",
+      "category": "event",
+      "latitude": 17.414963,
+      "longitude": 78.395111,
+      "location": "JRC Conventions &amp; Trade Fairs",
+      "startTime": "2026-11-02T18:00:00Z",
+      "endTime": "2026-11-03",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/global-pharma-partnering-summit-tickets/80002310218916",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "tech_summit",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "jrc_conventions_amp_trade_fairs"
+      },
+      "impact": {
+        "nearest_station_id": "PED",
+        "nearest_station_name": "Peddamma Gudi",
+        "nearest_station_distance_km": 2.24,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "02 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "02 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "02 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "02 Nov 2026, 11:30 PM",
+        "end_time_ist": "02 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Peddamma Gudi City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 2
+      }
+    },
+    {
+      "id": "2f78ba9a614a",
+      "title": "Event: African Basket Art @ Always Sunday Cafe and Bistro: Hyderabad",
+      "category": "event",
+      "latitude": 17.4217,
+      "longitude": 78.380798,
+      "location": "Always Sunday Cafe and Bistro: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/african-basket-art/3900030889934840",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "always_sunday_cafe_and_bistro_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 2.29,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 2
+      }
+    },
+    {
+      "id": "186eb2cedc4a",
+      "title": "Event: Diwali Diya Decoration @ Always Sunday Cafe and Bistro: Hyderabad",
+      "category": "event",
+      "latitude": 17.4217,
+      "longitude": 78.380798,
+      "location": "Always Sunday Cafe and Bistro: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/diwali-diya-decoration/3900030884203509",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "always_sunday_cafe_and_bistro_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 2.29,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 2
+      }
+    },
+    {
+      "id": "833a325356bc",
+      "title": "Event: Mirror work diya decorating @ La Vie En Rose Cafe and Bistro: Gachibowli",
+      "category": "event",
+      "latitude": 17.4429,
+      "longitude": 78.354897,
+      "location": "La Vie En Rose Cafe and Bistro: Gachibowli",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/mirror-work-diya-decorating/3900030877786812",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "la_vie_en_rose_cafe_and_bistro_gachibowli"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 2.37,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "896cae63d3bc",
+      "title": "Event: ##This Sankranti, let your home shine brihter# @ Prashanth Nagar, Vanasthalipuram, Hyderabad, India 500070, Telangana",
+      "category": "event",
+      "latitude": 17.33658,
+      "longitude": 78.566193,
+      "location": "Prashanth Nagar, Vanasthalipuram, Hyderabad, India 500070, Telangana",
+      "startTime": "2027-01-15T18:00:00Z",
+      "endTime": "2027-01-15T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/this-sankranti-let-your-home-shine-brihter/200030850120906",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "prashanth_nagar_vanasthalipuram_hyderabad_india_500070_telangana"
+      },
+      "impact": {
+        "nearest_station_id": "LBN",
+        "nearest_station_name": "L. B. Nagar",
+        "nearest_station_distance_km": 2.43,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "15 Jan 2027 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "15 Jan 2027 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "15 Jan 2027",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "15 Jan 2027, 11:30 PM",
+        "end_time_ist": "15 Jan 2027, 02:30 AM",
+        "feeder_bus_hubs": [
+          "L. B. Nagar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 1
+      }
+    },
+    {
+      "id": "50c8d6225003",
+      "title": "Event: Industrial Pumps and Valves 2026 @ HITEX EXHIBITION CENTER",
+      "category": "event",
+      "latitude": 17.470608,
+      "longitude": 78.374626,
+      "location": "HITEX EXHIBITION CENTER",
+      "startTime": "2026-12-03T18:00:00Z",
+      "endTime": "2026-12-04",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/industrial-pumps-and-valves-2026/100001989889217215",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hitex_exhibition_center"
+      },
+      "impact": {
+        "nearest_station_id": "HTC",
+        "nearest_station_name": "HITEC City",
+        "nearest_station_distance_km": 2.57,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "03 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "03 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "03 Dec 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "03 Dec 2026, 11:30 PM",
+        "end_time_ist": "03 Dec 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "HITEC City City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "5394b5a1acbd",
+      "title": "Event: PGP YL Insights: Meet ISB Faculty, Students &amp; the Admissions Team on Campus @ ISB Campus, Khemka Auditorium",
+      "category": "event",
+      "latitude": 17.448671,
+      "longitude": 78.353951,
+      "location": "ISB Campus, Khemka Auditorium",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/pgp-yl-insights-meet-isb-faculty-students-and-the-admissions-team-on-campus/100002003046843028",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "isb_campus_khemka_auditorium"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 2.58,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "d16a4cf35dd7",
+      "title": "Event: Pet Fed Hyderabad 2026 @ Novotel Hyderabad Convention Centre &amp; HICC",
+      "category": "event",
+      "latitude": 17.473,
+      "longitude": 78.373802,
+      "location": "Novotel Hyderabad Convention Centre &amp; HICC",
+      "startTime": "2026-11-21T18:00:00Z",
+      "endTime": "2026-11-21",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/pet-fed-hyderabad-2026/3900030700809640",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "novotel_hyderabad_convention_centre_amp_hicc"
+      },
+      "impact": {
+        "nearest_station_id": "MYP",
+        "nearest_station_name": "Miyapur",
+        "nearest_station_distance_km": 2.62,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "21 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "21 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "21 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "21 Nov 2026, 11:30 PM",
+        "end_time_ist": "21 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Miyapur Intercity Bus Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "da1bca32c6ef",
+      "title": "Event: Halloween party @ La Vie En Rose Cafe and Bistro: Gachibowli",
+      "category": "event",
+      "latitude": 17.4399,
+      "longitude": 78.349,
+      "location": "La Vie En Rose Cafe and Bistro: Gachibowli",
+      "startTime": "2026-10-31T19:00:00Z",
+      "endTime": "2026-10-31T22:00:00Z",
+      "severity": "medium",
+      "source": "bookmyshow_live",
+      "sourceUrl": "https://in.bookmyshow.com/events/halloween-party/ET00523674",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "la_vie_en_rose_cafe_and_bistro_gachibowli"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.0,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 12:30 AM \u2013 03:30 AM",
+        "schedule_display": "01 Nov 2026 \u2022 12:30 AM \u2013 03:30 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "12:30 AM \u2013 03:30 AM",
+        "start_time_ist": "01 Nov 2026, 12:30 AM",
+        "end_time_ist": "01 Nov 2026, 03:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "5fa84b1eb01b",
+      "title": "Event: Signathon Hyderabad 2026 @ Gachibowli Stadium",
+      "category": "event",
+      "latitude": 17.445982,
+      "longitude": 78.348244,
+      "location": "Gachibowli Stadium",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/signathon-hyderabad-2026/200030556628815",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "gachibowli_stadium"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.1,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "3ee25ea01c54",
+      "title": "Event: Hyderabad Hitec Marathon 2026 @ Gachibowli Stadium",
+      "category": "event",
+      "latitude": 17.445982,
+      "longitude": 78.348244,
+      "location": "Gachibowli Stadium",
+      "startTime": "2026-11-01T18:00:00Z",
+      "endTime": "2026-11-01T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/secunderabad/hyderabad-hitec-marathon-2026/200030556629520",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "gachibowli_stadium"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.1,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "01 Nov 2026, 11:30 PM",
+        "end_time_ist": "01 Nov 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "946e22ebd2e0",
+      "title": "Event: Telangana Half Marathon 2K27 @ Gachibowli Stadium",
+      "category": "event",
+      "latitude": 17.446272,
+      "longitude": 78.344078,
+      "location": "Gachibowli Stadium",
+      "startTime": "2027-01-24T18:00:00Z",
+      "endTime": "2027-01-24",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/telangana-half-marathon-2k27-tickets/80002662810643",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "gachibowli_stadium"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.55,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Jan 2027 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "24 Jan 2027 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "24 Jan 2027",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "24 Jan 2027, 11:30 PM",
+        "end_time_ist": "24 Jan 2027, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "db6063fea687",
+      "title": "Event: The Investor Pitch Room| B2B Networking | Online @ Hyderabad",
+      "category": "event",
+      "latitude": 17.423626,
+      "longitude": 78.347702,
+      "location": "Hyderabad",
+      "startTime": "2026-11-28T18:00:00Z",
+      "endTime": "2026-11-28",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/the-investor-pitch-room-b2b-networking-online/100001981567409464",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.74,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "28 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "28 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "28 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "28 Nov 2026, 11:30 PM",
+        "end_time_ist": "28 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "6824287382a5",
+      "title": "Event: THE BUSINESS ORBIT | Hyderabad\u2019s Business Networking &amp; Services Marketplace @ NanoSpace Coworking Nanakramguda Branch",
+      "category": "event",
+      "latitude": 17.423536,
+      "longitude": 78.347008,
+      "location": "NanoSpace Coworking Nanakramguda Branch",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/the-business-orbit-hyderabads-business-networking-and-services-marketplace/100002003280486863",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "nanospace_coworking_nanakramguda_branch"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 3.8,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "5e5a0529805f",
+      "title": "Event: PGP Insights: Meet ISB faculty, alumni and Admissions Team at Hyderabad @ Indian School of Business",
+      "category": "event",
+      "latitude": 17.435223,
+      "longitude": 78.339996,
+      "location": "Indian School of Business",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/pgp-insights-meet-isb-faculty-alumni-and-admissions-team-at-hyderabad/100002002493456835",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "indian_school_of_business"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 4.02,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "b117b03c5830",
+      "title": "Event: Agentic AI: Zero to Hero - From LLM Fundamentals to Autonomous AI Agents @ MUST AI Caf\u00e9",
+      "category": "event",
+      "latitude": 17.429705,
+      "longitude": 78.33181,
+      "location": "MUST AI Caf\u00e9",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/agentic-ai-zero-to-hero-from-llm-fundamentals-to-autonomous-ai-agents/100002003356570431",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "must_ai_caf\u00e9"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 5.01,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "2dbbb9f5f778",
+      "title": "Event: Bieu and Papa @ Rangbhoomi Spaces &amp; Events",
+      "category": "event",
+      "latitude": 17.470865,
+      "longitude": 78.330322,
+      "location": "Rangbhoomi Spaces &amp; Events",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/bieu-and-papa-tickets/80001788805858",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "rangbhoomi_spaces_amp_events"
+      },
+      "impact": {
+        "nearest_station_id": "MYP",
+        "nearest_station_name": "Miyapur",
+        "nearest_station_distance_km": 5.35,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Miyapur Intercity Bus Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "c23c30efe97c",
+      "title": "Event: THE BASS BARAAT BY NEEL CHHABRA @ Big Bull Club: Hyderabad",
+      "category": "event",
+      "latitude": 17.4153,
+      "longitude": 78.328796,
+      "location": "Big Bull Club: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/the-bass-baraat-by-neel-chhabra/3900030885192018",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "big_bull_club_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 5.93,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "5c2b458809e6",
+      "title": "Event: Quick Style India Tour - Hyderabad @ Big Bull Club: Hyderabad",
+      "category": "event",
+      "latitude": 17.415258,
+      "longitude": 78.328773,
+      "location": "Big Bull Club: Hyderabad",
+      "startTime": "2026-11-01T18:00:00Z",
+      "endTime": "2026-11-01T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/quick-style-india-tour-hyderabad/3900030729019117",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "big_bull_club_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 5.94,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "01 Nov 2026, 11:30 PM",
+        "end_time_ist": "01 Nov 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "5a8a251c98b1",
+      "title": "Event: SCC Picnic Cinema - Hotel Transylvania @ ONEGOLF BREWERY: Hyderabad",
+      "category": "event",
+      "latitude": 17.4144,
+      "longitude": 78.329102,
+      "location": "ONEGOLF BREWERY: Hyderabad",
+      "startTime": "2026-10-31T18:00:00Z",
+      "endTime": "2026-10-31",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/scc-picnic-cinema-hotel-transylvania/3900030762505718",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "onegolf_brewery_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 5.95,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "31 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "31 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "31 Oct 2026, 11:30 PM",
+        "end_time_ist": "31 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "f0bf6bc4dba0",
+      "title": "Event: Thaikkudam Bridge Live In Hyderabad @ Kingdome Klub and Kitchen: Hyderabad",
+      "category": "event",
+      "latitude": 17.4123,
+      "longitude": 78.328201,
+      "location": "Kingdome Klub and Kitchen: Hyderabad",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-24T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/thaikkudam-bridge-live-in-hyderabad/3900030741181355",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "kingdome_klub_and_kitchen_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 6.16,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "41f8ed09f644",
+      "title": "Event: The Band Agam Live in Hyderabad @ Kingdome Klub and Kitchen: Hyderabad",
+      "category": "event",
+      "latitude": 17.4123,
+      "longitude": 78.328201,
+      "location": "Kingdome Klub and Kitchen: Hyderabad",
+      "startTime": "2026-11-14T18:00:00Z",
+      "endTime": "2026-11-15",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/the-band-agam-live-in-hyderabad/3900030735264546",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "kingdome_klub_and_kitchen_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 6.16,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "14 Nov 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "14 Nov 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "14 Nov 2026, 11:30 PM",
+        "end_time_ist": "14 Nov 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "ef020e564b72",
+      "title": "Event: From Idea to Book @ Starbucks - Serilingampalle: Hyderabad",
+      "category": "event",
+      "latitude": 17.4669,
+      "longitude": 78.3097,
+      "location": "Starbucks - Serilingampalle: Hyderabad",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/from-idea-to-book/3900030755475212",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "starbucks_serilingampalle_hyderabad"
+      },
+      "impact": {
+        "nearest_station_id": "MYP",
+        "nearest_station_name": "Miyapur",
+        "nearest_station_distance_km": 7.48,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Miyapur Intercity Bus Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "1d1582749d91",
+      "title": "Event: 1st International Maize Conference 2026 @ Professor Jayashankar Telangana State Agricultural University",
+      "category": "event",
+      "latitude": 17.321783,
+      "longitude": 78.417564,
+      "location": "Professor Jayashankar Telangana State Agricultural University",
+      "startTime": "2026-10-26T18:00:00Z",
+      "endTime": "2026-10-28",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/1st-international-maize-conference-2026/200030473799152",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "professor_jayashankar_telangana_state_agricultural_university"
+      },
+      "impact": {
+        "nearest_station_id": "GAB",
+        "nearest_station_name": "Gandhi Bhavan",
+        "nearest_station_distance_km": 9.26,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "26 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "26 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "26 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "26 Oct 2026, 11:30 PM",
+        "end_time_ist": "26 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Gandhi Bhavan City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "48979571b0af",
+      "title": "Event: middle distance trg @ Yenkepally",
+      "category": "event",
+      "latitude": 17.341436,
+      "longitude": 78.314041,
+      "location": "Yenkepally",
+      "startTime": "2026-12-06T18:00:00Z",
+      "endTime": "2026-12-06T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/secunderabad/middle-distance-trg/200030863054322",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "yenkepally"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 13.04,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "06 Dec 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "06 Dec 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "06 Dec 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "06 Dec 2026, 11:30 PM",
+        "end_time_ist": "06 Dec 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "db77ad0ca7e8",
+      "title": "Event: Hyderabad Pool Carnival @ The HappyShire",
+      "category": "event",
+      "latitude": 17.282892,
+      "longitude": 78.211571,
+      "location": "The HappyShire",
+      "startTime": "2026-10-24T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/hyderabad-pool-carnival/4100030872812024",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "the_happyshire"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 24.94,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "24 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "24 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "24 Oct 2026, 11:30 PM",
+        "end_time_ist": "24 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "d62447b06767",
+      "title": "Event: Equality Run 2026 @ Statue of Equality",
+      "category": "event",
+      "latitude": 17.187525,
+      "longitude": 78.328613,
+      "location": "Statue of Equality",
+      "startTime": "2026-11-01T18:00:00Z",
+      "endTime": "2026-11-01T21:00:00Z",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/equality-run-2026/200030682112929",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "statue_of_equality"
+      },
+      "impact": {
+        "nearest_station_id": "GAB",
+        "nearest_station_name": "Gandhi Bhavan",
+        "nearest_station_distance_km": 26.88,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "schedule_display": "01 Nov 2026 \u2022 11:30 PM \u2013 02:30 AM",
+        "date_str": "01 Nov 2026",
+        "time_str": "11:30 PM \u2013 02:30 AM",
+        "start_time_ist": "01 Nov 2026, 11:30 PM",
+        "end_time_ist": "01 Nov 2026, 02:30 AM",
+        "feeder_bus_hubs": [
+          "Gandhi Bhavan City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "62d016ed7095",
+      "title": "Event: Hyderabad Comic Con 2026 @ Bharat Future City",
+      "category": "event",
+      "latitude": 17.052034,
+      "longitude": 78.535248,
+      "location": "Bharat Future City",
+      "startTime": "2026-12-11T18:00:00Z",
+      "endTime": "2026-12-13",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/hyderabad-comic-con-2026/4100030735496339",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "bharat_future_city"
+      },
+      "impact": {
+        "nearest_station_id": "LBN",
+        "nearest_station_name": "L. B. Nagar",
+        "nearest_station_distance_km": 33.14,
+        "affected_corridors": [
+          "RED"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "11 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "11 Dec 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "11 Dec 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "11 Dec 2026, 11:30 PM",
+        "end_time_ist": "11 Dec 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "L. B. Nagar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "0f36ba6897bf",
+      "title": "Event: Akshayakalpa Organic presents Forgotten Foods @ Akshayakalpa Organic - Agriculture Research and Development Facility, Telangana",
+      "category": "event",
+      "latitude": 17.141563,
+      "longitude": 78.208939,
+      "location": "Akshayakalpa Organic - Agriculture Research and Development Facility, Telangana",
+      "startTime": "2026-10-25T18:00:00Z",
+      "endTime": "2026-10-25",
+      "severity": "medium",
+      "source": "allevents_live_ld",
+      "sourceUrl": "https://allevents.in/hyderabad/akshayakalpa-organic-presents-forgotten-foods-tickets/80002473074971",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.92,
+      "raw_meta": {
+        "event_type": "other",
+        "expected_attendance": 5000,
+        "crowd_estimate": "medium",
+        "venue_id": "akshayakalpa_organic_agriculture_research_and_development_facility_telangana"
+      },
+      "impact": {
+        "nearest_station_id": "RDG",
+        "nearest_station_name": "Raidurg",
+        "nearest_station_distance_km": 37.88,
+        "affected_corridors": [
+          "BLUE"
+        ],
+        "estimated_surge_pct": 10.0,
+        "impact_reason": "Medium event (5,000 attendees) increasing station platform boardings.",
+        "is_active_now": false,
+        "peak_window": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "schedule_display": "25 Oct 2026 \u2022 11:30 PM \u2013 12:00 AM",
+        "date_str": "25 Oct 2026",
+        "time_str": "11:30 PM \u2013 12:00 AM",
+        "start_time_ist": "25 Oct 2026, 11:30 PM",
+        "end_time_ist": "25 Oct 2026, 12:00 AM",
+        "feeder_bus_hubs": [
+          "Raidurg / IT Corridor Feeder Terminal"
+        ],
+        "nearby_stations_count": 0
+      }
+    },
+    {
+      "id": "weather_clear_2026102405",
+      "title": "Weather Advisory: Partly Cloudy, Dry Commute (30.2\u00b0C, Humidity 38%)",
+      "category": "weather",
+      "latitude": 17.385,
+      "longitude": 78.4867,
+      "location": "Hyderabad Metropolitan Area",
+      "startTime": "2026-10-24T05:16:38.898759+00:00",
+      "endTime": "2026-10-24T11:16:38.898759+00:00",
+      "severity": "low",
+      "source": "live_open_meteo",
+      "sourceUrl": "https://open-meteo.com/",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 0.98,
+      "raw_meta": {
+        "precipitation_mm": 0.0,
+        "temperature_c": 30.2,
+        "weather_code": 0,
+        "rain_surge_multiplier": 1.0
+      },
+      "impact": {
+        "nearest_station_id": "SUB",
+        "nearest_station_name": "Sultan Bazar",
+        "nearest_station_distance_km": 0.29,
+        "affected_corridors": [
+          "GREEN",
+          "RED"
+        ],
+        "estimated_surge_pct": 0.0,
+        "impact_reason": "Dry weather; normal baseline demand pattern.",
+        "is_active_now": true,
+        "peak_window": "24 Oct 2026 \u2022 10:46 AM \u2013 04:46 PM",
+        "schedule_display": "24 Oct 2026 \u2022 10:46 AM \u2013 04:46 PM",
+        "date_str": "24 Oct 2026",
+        "time_str": "10:46 AM \u2013 04:46 PM",
+        "start_time_ist": "24 Oct 2026, 10:46 AM",
+        "end_time_ist": "24 Oct 2026, 04:46 PM",
+        "feeder_bus_hubs": [
+          "Sultan Bazar City Bus Feeder Stop"
+        ],
+        "nearby_stations_count": 10
+      }
+    },
+    {
+      "id": "transit_metro_peak_protocol",
+      "title": "Transit Operations: Peak Hour High-Frequency Headway in Effect (3.5 - 4.5 min)",
+      "category": "transit",
+      "latitude": 17.4357,
+      "longitude": 78.4482,
+      "location": "All Corridors (Red, Blue, Green Lines)",
+      "startTime": "2026-10-24T05:00:00.898759+00:00",
+      "endTime": "2026-10-24T08:16:38.898759+00:00",
+      "severity": "low",
+      "source": "hmrl_operations",
+      "sourceUrl": "https://www.ltmetro.com/",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 1.0,
+      "raw_meta": {
+        "headway_red_min": 3.5,
+        "headway_blue_min": 4.0,
+        "headway_green_min": 7.0,
+        "operating_status": "optimal"
+      },
+      "impact": {
+        "nearest_station_id": "AME",
+        "nearest_station_name": "Ameerpet",
+        "nearest_station_distance_km": 0.36,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 0.0,
+        "impact_reason": "Standard operational transit regulation.",
+        "is_active_now": true,
+        "peak_window": "24 Oct 2026 \u2022 10:30 AM \u2013 01:46 PM",
+        "schedule_display": "24 Oct 2026 \u2022 10:30 AM \u2013 01:46 PM",
+        "date_str": "24 Oct 2026",
+        "time_str": "10:30 AM \u2013 01:46 PM",
+        "start_time_ist": "24 Oct 2026, 10:30 AM",
+        "end_time_ist": "24 Oct 2026, 01:46 PM",
+        "feeder_bus_hubs": [
+          "Ameerpet Transit Hub & Feeder Junction"
+        ],
+        "nearby_stations_count": 9
+      }
+    },
+    {
+      "id": "transit_interchange_status",
+      "title": "Interchange Transit Flow: Normal Transfer Operations at Ameerpet & Parade Ground",
+      "category": "transit",
+      "latitude": 17.4357,
+      "longitude": 78.4482,
+      "location": "Ameerpet (Red-Blue) & Parade Ground (Blue-Green)",
+      "startTime": "2026-10-24T05:16:38.898759+00:00",
+      "endTime": "2026-10-24T13:16:38.898759+00:00",
+      "severity": "low",
+      "source": "hmrl_operations",
+      "sourceUrl": "https://www.ltmetro.com/",
+      "lastUpdated": "2026-10-24T05:16:38.898759+00:00",
+      "confidence": 1.0,
+      "raw_meta": {
+        "transfer_station_1": "AME",
+        "transfer_station_2": "PRG",
+        "flow_status": "smooth"
+      },
+      "impact": {
+        "nearest_station_id": "AME",
+        "nearest_station_name": "Ameerpet",
+        "nearest_station_distance_km": 0.36,
+        "affected_corridors": [
+          "BLUE",
+          "RED"
+        ],
+        "estimated_surge_pct": 0.0,
+        "impact_reason": "Standard operational transit regulation.",
+        "is_active_now": true,
+        "peak_window": "24 Oct 2026 \u2022 10:46 AM \u2013 06:46 PM",
+        "schedule_display": "24 Oct 2026 \u2022 10:46 AM \u2013 06:46 PM",
+        "date_str": "24 Oct 2026",
+        "time_str": "10:46 AM \u2013 06:46 PM",
+        "start_time_ist": "24 Oct 2026, 10:46 AM",
+        "end_time_ist": "24 Oct 2026, 06:46 PM",
+        "feeder_bus_hubs": [
+          "Ameerpet Transit Hub & Feeder Junction"
+        ],
+        "nearby_stations_count": 9
+      }
+    }
+  ]
+}

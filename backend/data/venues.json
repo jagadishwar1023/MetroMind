@@ -7,5 +7,6 @@
   {"id": "lal_bahadur", "name": "Lal Bahadur Shastri Stadium", "nearest_station": "ASM", "lat": 17.3997, "lon": 78.4724, "capacity": 20000, "type": "stadium"},
   {"id": "tank_bund", "name": "Tank Bund / Hussain Sagar", "nearest_station": "KHA", "lat": 17.4239, "lon": 78.4738, "capacity": 15000, "type": "waterfront"},
   {"id": "mgbs", "name": "MGBS Grounds", "nearest_station": "MGB", "lat": 17.3798, "lon": 78.4862, "capacity": 30000, "type": "public_ground"},
-  {"id": "jbs_grounds", "name": "JBS Parade Ground", "nearest_station": "JBS", "lat": 17.4445, "lon": 78.4976, "capacity": 25000, "type": "public_ground"}
+  {"id": "jbs_grounds", "name": "JBS Parade Ground", "nearest_station": "JBS", "lat": 17.4445, "lon": 78.4976, "capacity": 25000, "type": "public_ground"},
+  {"id": "gymkhana_ground", "name": "Gymkhana Ground, Secunderabad (Ranji Trophy & Domestic)", "nearest_station": "PRG", "lat": 17.4428, "lon": 78.4988, "capacity": 10000, "type": "cricket_ground"}
 ]

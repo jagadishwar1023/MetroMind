@@ -55,4 +55,17 @@ export const createManualEvent= (payload) => api.post('/manual-events', payload)
 export const deleteManualEvent= (id) => api.delete(`/manual-events/${id}`).then(r => r.data);
 export const getManualEvents  = (date) => api.get(`/manual-events${date ? `?date=${date}` : ''}`).then(r => r.data);
 
+// ── Unified Disruption & Live Traffic Feed ───────────────────
+export const getLiveDisruptions = (params = {}) => api.get('/disruptions/live', { params }).then(r => r.data);
+export const refreshDisruptions = () => api.post('/disruptions/refresh').then(r => r.data);
+
+// ── Metro Train Schedule & Terminal Departures ───────────────
+export const getMetroScheduleLines = () => api.get('/metro-schedule/lines').then(r => r.data);
+export const getMetroDepartures = (params = {}) => api.get('/metro-schedule/departures', { params }).then(r => r.data);
+export const getMetroStationSequence = (line, directionId = 0) => api.get(`/metro-schedule/station-sequence?line=${line}&direction_id=${directionId}`).then(r => r.data);
+export const getMetroScheduleEvents = (date) => api.get(`/metro-schedule/events${date ? `?target_date=${date}` : ''}`).then(r => r.data);
+export const createMetroScheduleEvent = (payload) => api.post('/metro-schedule/events', payload).then(r => r.data);
+export const deleteMetroScheduleEvent = (id) => api.delete(`/metro-schedule/events/${id}`).then(r => r.data);
+export const resetMetroScheduleEvents = () => api.post('/metro-schedule/events/reset').then(r => r.data);
+
 export default api;

@@ -6,12 +6,15 @@ import {
 import {
   Calendar, CloudRain, Sun, Zap, Train, RefreshCw,
   ChevronLeft, ChevronRight, MapPin, Plus, X, Layers,
-  AlertTriangle, AlertCircle, Info, Clock, CheckCircle2, ChevronDown
+  AlertTriangle, AlertCircle, Info, Clock, CheckCircle2, ChevronDown,
+  ShieldAlert
 } from 'lucide-react';
+import DisruptionRadar from './DisruptionRadar';
 import { getDateOffset, shiftDate, formatDate } from '../utils/dateUtils';
 
 const VENUE_OPTIONS = [
   { key: 'uppal_stadium', name: 'Rajiv Gandhi Cricket Stadium, Uppal', lat: 17.4063, lon: 78.5480, nearest_stop_id: 'STD', distance_km: 0.7, capacity: 55000, default_url: 'https://in.bookmyshow.com/sports/ipl-sunrisers-hyderabad/ET00355125' },
+  { key: 'gymkhana_ground', name: 'Gymkhana Cricket Ground, Secunderabad (Ranji & Domestic)', lat: 17.4428, lon: 78.4988, nearest_stop_id: 'PRG', distance_km: 0.15, capacity: 10000, default_url: 'https://hycricket.org' },
   { key: 'hitex', name: 'Hitex Exhibition Centre, HITEC City', lat: 17.4517, lon: 78.3727, nearest_stop_id: 'HTC', distance_km: 1.2, capacity: 18000, default_url: 'https://in.bookmyshow.com/events/hitex-hyderabad/ET00391003' },
   { key: 'hicc', name: 'HICC / Novotel Convention Centre, Madhapur', lat: 17.4448, lon: 78.3766, nearest_stop_id: 'HTC', distance_km: 1.5, capacity: 8000, default_url: 'https://in.bookmyshow.com/events/global-cloud-summit-hyderabad/ET00391001' },
   { key: 'gachibowli_stadium', name: 'Gachibowli Indoor Stadium, IT Corridor', lat: 17.4399, lon: 78.3490, nearest_stop_id: 'RDG', distance_km: 2.0, capacity: 12000, default_url: 'https://in.bookmyshow.com/sports/pro-kabaddi-telugu-titans/ET00378910' },
@@ -527,6 +530,17 @@ export default function AutoPilotDashboard({ onOpenEventMap }) {
             >
               Hourly Dispatch Table
             </button>
+            <button
+              onClick={() => setActiveTab('disruptions')}
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-1.5 ${
+                activeTab === 'disruptions'
+                  ? 'bg-slate-800 text-rose-300 font-bold shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-400" />
+              Live Disruption Radar
+            </button>
           </div>
 
           {activeTab === 'events' && (
@@ -682,6 +696,13 @@ export default function AutoPilotDashboard({ onOpenEventMap }) {
                 })}
               </tbody>
             </table>
+          </div>
+        )}
+
+        {/* Tab 4: Live Event & Weather Impact Radar */}
+        {activeTab === 'disruptions' && (
+          <div className="pt-2">
+            <DisruptionRadar />
           </div>
         )}
       </div>

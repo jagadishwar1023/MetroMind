@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import ControlCenter from './pages/ControlCenter';
 import NetworkMap from './pages/NetworkMap';
 import ScheduleView from './pages/ScheduleView';
+import MetroSchedule from './pages/MetroSchedule';
 import Trends from './pages/Trends';
 import { getHealth, getLiveWeather } from './api/client';
 
@@ -36,6 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ControlCenter />} />
           <Route path="/map" element={<main className="p-6 md:p-8 max-w-7xl mx-auto min-h-full"><NetworkMap /></main>} />
+          <Route path="/metro-schedule" element={<main className="p-6 md:p-8 max-w-7xl mx-auto min-h-full"><MetroSchedule /></main>} />
           <Route path="/schedule" element={<main className="p-6 md:p-8 max-w-7xl mx-auto min-h-full"><ScheduleView /></main>} />
           <Route path="/trends" element={<main className="p-6 md:p-8 max-w-7xl mx-auto min-h-full"><Trends /></main>} />
           <Route path="/event" element={<Navigate to="/" replace />} />

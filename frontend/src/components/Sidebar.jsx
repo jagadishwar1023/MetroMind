@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Monitor, Map, Train, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Monitor, Map, Train, TrendingUp, CheckCircle2, CalendarClock } from 'lucide-react';
 
 export default function Sidebar({ health, lastWeatherUpdate }) {
   const navItems = [
     { name: 'Control Center', path: '/', icon: Monitor },
     { name: 'Network Map', path: '/map', icon: Map },
+    { name: 'Metro Schedule', path: '/metro-schedule', icon: CalendarClock },
     { name: 'Schedule View', path: '/schedule', icon: Train },
     { name: 'Trends & Surges', path: '/trends', icon: TrendingUp },
   ];

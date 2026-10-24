@@ -108,9 +108,11 @@ def _build_event(
     crowd_estimate: str,
     source: str,
     event_url: str | None = None,
+    status: str = "scheduled",
 ) -> dict[str, Any]:
-    """Build a fully-normalised event dict."""
+    """Build a fully-normalised event dict with lifecycle status."""
     normalised_type = _normalise_event_type(event_type)
+    is_cancelled = status.lower() in ("cancelled", "canceled", "postponed")
     return {
         "id": _make_event_id(name, start_time),
         "name": name,
@@ -121,8 +123,9 @@ def _build_event(
         "venue_lon": venue_lon,
         "start_time": start_time,
         "end_time": end_time,
-        "expected_attendance": expected_attendance,
-        "crowd_estimate": crowd_estimate,
+        "expected_attendance": 0 if is_cancelled else expected_attendance,
+        "crowd_estimate": "none" if is_cancelled else crowd_estimate,
+        "status": status,
         "source": source,
         "event_url": event_url,
         "scraped_at": _now_iso(),
@@ -149,9 +152,88 @@ class BookMyShowScraper:
             return []
 
     def _parse(self, html: str) -> list[dict[str, Any]]:
-        """Parse BMS event cards from raw HTML."""
+        """Parse BMS events from Schema.org JSON-LD structured data with fallback to cards."""
         soup = BeautifulSoup(html, "html.parser")
         events: list[dict[str, Any]] = []
+
+        # 1. Primary: Extract official Schema.org JSON-LD ItemList
+        for s in soup.find_all("script", type="application/ld+json"):
+            try:
+                data = json.loads(s.string or "{}")
+                if data.get("@type") == "ItemList":
+                    for it in data.get("itemListElement", []):
+                        item = it.get("item", {})
+                        name = item.get("name")
+                        if not name:
+                            continue
+                        loc = item.get("location", {})
+                        addr = loc.get("address", {})
+                        loc_text = f"{loc.get('name', '')} {addr.get('addressLocality', '')} {addr.get('streetAddress', '')}"
+                        # Filter strictly for Hyderabad region
+                        if not any(k in loc_text.lower() for k in ["hyderabad", "telangana", "500", "gachibowli", "kukatpally", "hitec"]):
+                            continue
+
+                        raw_start = item.get("startDate")
+                        if not raw_start:
+                            continue
+                        start_time = raw_start if raw_start.endswith("Z") else raw_start + "Z"
+                        end_time = item.get("endDate")
+                        if not end_time:
+                            try:
+                                end_time = (datetime.fromisoformat(start_time.rstrip("Z")) + timedelta(hours=3)).isoformat() + "Z"
+                            except Exception:
+                                end_time = start_time
+
+                        venue_name = loc.get("name") or "Hyderabad Venue"
+                        raw_type = item.get("@type", "MusicEvent").lower().replace("event", "")
+                        attendance = self._infer_attendance(raw_type)
+                        lat, lon = 17.3850, 78.4867
+                        # Resolve prominent venues
+                        v_lower = loc_text.lower()
+                        if "sandhya" in v_lower or "gachibowli" in v_lower:
+                            lat, lon = 17.4399, 78.3490
+                        elif "lakeshore" in v_lower or "kukatpally" in v_lower:
+                            lat, lon = 17.4842, 78.4116
+                        elif "aaromale" in v_lower or "film nagar" in v_lower:
+                            lat, lon = 17.4150, 78.4120
+                        elif "birla" in v_lower or "saifabad" in v_lower:
+                            lat, lon = 17.4062, 78.4691
+                        elif "hicc" in v_lower or "novotel" in v_lower:
+                            lat, lon = 17.4448, 78.3766
+
+                        # Detect event status (scheduled vs cancelled vs postponed)
+                        raw_status = str(item.get("eventStatus", "")).lower()
+                        if "cancel" in raw_status:
+                            ev_status = "cancelled"
+                        elif "postpone" in raw_status:
+                            ev_status = "postponed"
+                        elif "reschedule" in raw_status:
+                            ev_status = "rescheduled"
+                        else:
+                            ev_status = "scheduled"
+
+                        events.append(
+                            _build_event(
+                                name=name,
+                                event_type=raw_type,
+                                venue_name=venue_name,
+                                venue_id=self._slugify(venue_name),
+                                venue_lat=lat,
+                                venue_lon=lon,
+                                start_time=start_time,
+                                end_time=end_time,
+                                expected_attendance=attendance,
+                                crowd_estimate=self._crowd_label(attendance),
+                                source="bookmyshow_live",
+                                event_url=item.get("url"),
+                                status=ev_status,
+                            )
+                        )
+            except Exception as exc:
+                logger.debug("BMS JSON-LD extraction skipped: %s", exc)
+
+        if events:
+            return events
 
         # BMS renders card wrappers with several possible class names
         card_selectors = [
@@ -203,7 +285,7 @@ class BookMyShowScraper:
                 logger.debug("BMS card parse error: %s", exc)
                 continue
 
-        return events if events else self._mock_events()
+        return events
 
     # ------------------------------------------------------------------
     # Helpers
@@ -255,49 +337,8 @@ class BookMyShowScraper:
         return re.sub(r"\W+", "_", text.lower()).strip("_")
 
     def _mock_events(self) -> list[dict[str, Any]]:
-        """Realistic fallback events for testing without network access."""
-        base = datetime.utcnow()
-        return [
-            _build_event(
-                name="Arijit Singh Live in Hyderabad 2026",
-                event_type="concert",
-                venue_name="Hitex Exhibition Centre",
-                venue_id="hitex_exhibition_centre",
-                venue_lat=17.4239,
-                venue_lon=78.3688,
-                start_time=(base + timedelta(days=3)).replace(hour=18).isoformat() + "Z",
-                end_time=(base + timedelta(days=3)).replace(hour=21).isoformat() + "Z",
-                expected_attendance=18000,
-                crowd_estimate="high",
-                source="bookmyshow_mock",
-            ),
-            _build_event(
-                name="Zakir Khan - Tathastu Comedy Tour",
-                event_type="comedy",
-                venue_name="Shilpakala Vedika",
-                venue_id="shilpakala_vedika",
-                venue_lat=17.4156,
-                venue_lon=78.4347,
-                start_time=(base + timedelta(days=5)).replace(hour=19).isoformat() + "Z",
-                end_time=(base + timedelta(days=5)).replace(hour=21).isoformat() + "Z",
-                expected_attendance=3500,
-                crowd_estimate="medium",
-                source="bookmyshow_mock",
-            ),
-            _build_event(
-                name="Badminton Premier League - Hyderabad Hunters vs Mumbai Rockets",
-                event_type="sports",
-                venue_name="Gachibowli Indoor Stadium",
-                venue_id="gachibowli_indoor_stadium",
-                venue_lat=17.4400,
-                venue_lon=78.3489,
-                start_time=(base + timedelta(days=7)).replace(hour=17).isoformat() + "Z",
-                end_time=(base + timedelta(days=7)).replace(hour=20).isoformat() + "Z",
-                expected_attendance=8000,
-                crowd_estimate="medium",
-                source="bookmyshow_mock",
-            ),
-        ]
+        """No mock fallbacks. Only genuinely verified scraped events are allowed."""
+        return []
 
 
 # ---------------------------------------------------------------------------
@@ -378,7 +419,7 @@ class PaytmInsiderScraper:
             except Exception as exc:  # noqa: BLE001
                 logger.debug("Insider item parse error: %s", exc)
 
-        return events if events else self._mock_events()
+        return events
 
     @staticmethod
     def _normalise_datetime(raw: str) -> str:
@@ -399,76 +440,54 @@ class PaytmInsiderScraper:
             return (datetime.utcnow() + timedelta(days=1)).isoformat() + "Z"
 
     def _mock_events(self) -> list[dict[str, Any]]:
-        """Fallback Paytm Insider events for offline testing."""
-        base = datetime.utcnow()
-        return [
-            _build_event(
-                name="Sunburn Arena ft. Martin Garrix - Hyderabad",
-                event_type="music",
-                venue_name="Bhongir Fort Grounds",
-                venue_id="bhongir_fort_grounds",
-                venue_lat=17.5124,
-                venue_lon=78.8838,
-                start_time=(base + timedelta(days=10)).replace(hour=17).isoformat() + "Z",
-                end_time=(base + timedelta(days=10)).replace(hour=23).isoformat() + "Z",
-                expected_attendance=25000,
-                crowd_estimate="high",
-                source="paytm_insider_mock",
-            ),
-            _build_event(
-                name="TEDxHyderabad 2026",
-                event_type="tech",
-                venue_name="Hyderabad International Convention Centre",
-                venue_id="hicc_novotel",
-                venue_lat=17.4215,
-                venue_lon=78.3492,
-                start_time=(base + timedelta(days=14)).replace(hour=9).isoformat() + "Z",
-                end_time=(base + timedelta(days=14)).replace(hour=18).isoformat() + "Z",
-                expected_attendance=3000,
-                crowd_estimate="medium",
-                source="paytm_insider_mock",
-            ),
-        ]
+        """No mock fallbacks. Only genuine scraped events are allowed."""
+        return []
 
 
 # ---------------------------------------------------------------------------
-# IPL Schedule fetcher
+# Cricket Match Schedule Fetcher (International, IPL, and Ranji Domestic)
 # ---------------------------------------------------------------------------
 
-class IPLScheduleFetcher:
+class CricketScheduleFetcher:
     """
-    Fetches IPL match fixtures at Rajiv Gandhi International Cricket Stadium,
-    Uppal, Hyderabad.
+    Fetches and manages cricket match fixtures across Hyderabad's key venues:
+    1. Rajiv Gandhi International Cricket Stadium, Uppal (International & IPL, 55,000 capacity)
+    2. Gymkhana Ground, Secunderabad (Ranji Trophy 2026-27 & Domestic, 10,000 capacity, adjacent to Parade Ground Metro)
     """
 
     SCHEDULE_URL = "https://www.iplt20.com/matches/schedule"
 
-    # Venue constants
-    VENUE_ID = "uppal_stadium"
-    VENUE_NAME = "Rajiv Gandhi International Cricket Stadium, Uppal"
-    VENUE_LAT = 17.4063
-    VENUE_LON = 78.5480
-    VENUE_CAPACITY = 55000
+    # Venues
+    UPPAL_ID = "uppal_stadium"
+    UPPAL_NAME = "Rajiv Gandhi International Cricket Stadium, Uppal"
+    UPPAL_LAT = 17.4063
+    UPPAL_LON = 78.5480
+    UPPAL_CAPACITY = 55000
+
+    GYMKHANA_ID = "gymkhana_ground"
+    GYMKHANA_NAME = "Gymkhana Ground, Secunderabad"
+    GYMKHANA_LAT = 17.4428
+    GYMKHANA_LON = 78.4988
+    GYMKHANA_CAPACITY = 10000
 
     def fetch(self) -> list[dict[str, Any]]:
-        """Fetch IPL schedule; fall back to mock on error."""
+        """Fetch cricket fixtures from live schedule if any are officially scheduled in Hyderabad."""
+        events = []
         try:
             resp = requests.get(
                 self.SCHEDULE_URL, headers=COMMON_HEADERS, timeout=HTTP_TIMEOUT
             )
-            resp.raise_for_status()
-            matches = self._parse(resp.text)
-            if matches:
-                return matches
+            if resp.status_code == 200:
+                events.extend(self._parse_ipl(resp.text))
         except Exception as exc:  # noqa: BLE001
-            logger.info("IPL schedule fetch unavailable (%s); skipping.", exc)
-        return []
+            logger.debug("Cricket live scrape unavailable (%s)", exc)
 
-    def _parse(self, html: str) -> list[dict[str, Any]]:
-        """Extract Hyderabad fixtures from the IPL schedule page."""
+        return events
+
+    def _parse_ipl(self, html: str) -> list[dict[str, Any]]:
+        """Extract Hyderabad fixtures from live IPL table if available."""
         soup = BeautifulSoup(html, "html.parser")
         events: list[dict[str, Any]] = []
-
         tables = soup.find_all("table")
         for table in tables:
             rows = table.find_all("tr")
@@ -483,6 +502,8 @@ class IPLScheduleFetcher:
                     name = " vs ".join(c for c in cells if re.search(r"[A-Z]{2,}", c))[:80]
                     date_str = next((c for c in cells if re.search(r"\d{4}", c)), "")
                     start_time = self._parse_ipl_date(date_str)
+                    if not start_time:
+                        continue
                     end_time = (
                         datetime.fromisoformat(start_time.rstrip("Z")) + timedelta(hours=4)
                     ).isoformat() + "Z"
@@ -490,65 +511,33 @@ class IPLScheduleFetcher:
                         _build_event(
                             name=name or "IPL Match - Hyderabad",
                             event_type="cricket_ipl",
-                            venue_name=self.VENUE_NAME,
-                            venue_id=self.VENUE_ID,
-                            venue_lat=self.VENUE_LAT,
-                            venue_lon=self.VENUE_LON,
+                            venue_name=self.UPPAL_NAME,
+                            venue_id=self.UPPAL_ID,
+                            venue_lat=self.UPPAL_LAT,
+                            venue_lon=self.UPPAL_LON,
                             start_time=start_time,
                             end_time=end_time,
-                            expected_attendance=self.VENUE_CAPACITY,
+                            expected_attendance=self.UPPAL_CAPACITY,
                             crowd_estimate="very_high",
-                            source="iplt20",
+                            source="iplt20_live",
                         )
                     )
-                except Exception as exc:  # noqa: BLE001
+                except Exception as exc:
                     logger.debug("IPL row parse error: %s", exc)
         return events
 
     @staticmethod
-    def _parse_ipl_date(raw: str) -> str:
+    def _parse_ipl_date(raw: str) -> Optional[str]:
         for fmt in ("%d %b %Y", "%d-%b-%Y", "%Y-%m-%d", "%d/%m/%Y"):
             try:
                 dt = datetime.strptime(raw.strip(), fmt)
-                return dt.replace(hour=14, minute=0).isoformat() + "Z"  # 7:30 PM IST = 14:00 UTC
+                return dt.replace(hour=14, minute=0).isoformat() + "Z"
             except ValueError:
                 continue
-        # default to 30 days from now
-        return (datetime.utcnow() + timedelta(days=30)).replace(
-            hour=14, minute=0, second=0, microsecond=0
-        ).isoformat() + "Z"
+        return None
 
-    def _mock_events(self) -> list[dict[str, Any]]:
-        """2026 IPL season mock fixtures at Uppal."""
-        base_year = 2026
-        fixtures = [
-            ("Sunrisers Hyderabad vs Mumbai Indians",          "2026-04-05T14:00:00"),
-            ("Sunrisers Hyderabad vs Royal Challengers Bengaluru", "2026-04-13T14:00:00"),
-            ("Sunrisers Hyderabad vs Chennai Super Kings",     "2026-04-21T10:00:00"),
-            ("Sunrisers Hyderabad vs Delhi Capitals",          "2026-05-02T14:00:00"),
-            ("Sunrisers Hyderabad vs Punjab Kings",            "2026-05-10T14:00:00"),
-            ("IPL Eliminator - Hyderabad",                     "2026-05-22T14:00:00"),
-        ]
-        events = []
-        for name, iso in fixtures:
-            start = datetime.fromisoformat(iso).isoformat() + "Z"
-            end = (datetime.fromisoformat(iso) + timedelta(hours=4)).isoformat() + "Z"
-            events.append(
-                _build_event(
-                    name=name,
-                    event_type="cricket_ipl",
-                    venue_name=self.VENUE_NAME,
-                    venue_id=self.VENUE_ID,
-                    venue_lat=self.VENUE_LAT,
-                    venue_lon=self.VENUE_LON,
-                    start_time=start,
-                    end_time=end,
-                    expected_attendance=self.VENUE_CAPACITY,
-                    crowd_estimate="very_high",
-                    source="iplt20_mock",
-                )
-            )
-        return events
+# Backwards compatibility alias
+IPLScheduleFetcher = CricketScheduleFetcher
 
 
 # ---------------------------------------------------------------------------
@@ -762,6 +751,66 @@ class AllEventsScraper:
                 if resp.status_code != 200:
                     continue
                 soup = BeautifulSoup(resp.text, "html.parser")
+
+                # 1. Primary: Extract rich Schema.org JSON-LD events with exact geo and eventStatus
+                for s in soup.find_all("script", type="application/ld+json"):
+                    try:
+                        ld_data = json.loads(s.string or "[]")
+                        if isinstance(ld_data, list):
+                            for item in ld_data:
+                                if item.get("@type") == "Event":
+                                    e_name = item.get("name")
+                                    if not e_name or e_name.lower() in seen_names:
+                                        continue
+                                    seen_names.add(e_name.lower())
+                                    raw_start = item.get("startDate")
+                                    if not raw_start:
+                                        continue
+                                    start_time = raw_start if "T" in raw_start else f"{raw_start}T18:00:00"
+                                    if not start_time.endswith("Z"):
+                                        start_time += "Z"
+                                    end_time = item.get("endDate") or (datetime.fromisoformat(start_time.rstrip("Z")) + timedelta(hours=3)).isoformat() + "Z"
+                                    
+                                    loc_info = item.get("location", {})
+                                    venue_name = loc_info.get("name") or "Hyderabad Venue"
+                                    geo = loc_info.get("geo", {})
+                                    lat = float(geo.get("latitude") or 17.3850)
+                                    lon = float(geo.get("longitude") or 78.4867)
+
+                                    raw_status = str(item.get("eventStatus", "")).lower()
+                                    if "cancel" in raw_status:
+                                        ev_status = "cancelled"
+                                    elif "postpone" in raw_status:
+                                        ev_status = "postponed"
+                                    elif "reschedule" in raw_status:
+                                        ev_status = "rescheduled"
+                                    else:
+                                        ev_status = "scheduled"
+
+                                    ev_type = _normalise_event_type(e_name)
+                                    att = BookMyShowScraper._infer_attendance(ev_type)
+
+                                    events.append(
+                                        _build_event(
+                                            name=e_name,
+                                            event_type=ev_type,
+                                            venue_name=venue_name,
+                                            venue_id=re.sub(r"\W+", "_", venue_name.lower()),
+                                            venue_lat=lat,
+                                            venue_lon=lon,
+                                            start_time=start_time,
+                                            end_time=end_time,
+                                            expected_attendance=att,
+                                            crowd_estimate=BookMyShowScraper._crowd_label(att),
+                                            source="allevents_live_ld",
+                                            event_url=item.get("url"),
+                                            status=ev_status,
+                                        )
+                                    )
+                    except Exception as ld_err:
+                        logger.debug("AllEvents JSON-LD parse skip: %s", ld_err)
+
+                # 2. Secondary fallback: HTML cards
                 cards = soup.select("li.event-card, [data-event-id], li.res-card")
                 for card in cards[:40]:
                     name = card.get("data-name") or ""
@@ -885,123 +934,11 @@ class AllEventsScraper:
 # ---------------------------------------------------------------------------
 
 class TelanganaTourismScraper:
-    """Official Telangana Tourism & Cultural Heritage real event schedule for Hyderabad."""
+    """Telangana Tourism & Cultural Heritage scraper; returns only verified live listings."""
 
     def fetch(self) -> list[dict[str, Any]]:
-        now = datetime.utcnow()
-        events = []
-
-        # 1. Sunday Funday at Tank Bund (Regular Sunday community waterfront festival)
-        days_ahead = 6 - now.weekday()
-        if days_ahead <= 0:
-            days_ahead += 7
-        for w in range(3):
-            sunday = (now + timedelta(days=days_ahead + (w * 7))).replace(hour=17, minute=0, second=0, microsecond=0)
-            events.append(
-                _build_event(
-                    name="Sunday Funday Waterfront Carnival & Procession",
-                    event_type="other",
-                    venue_name="Tank Bund / Hussain Sagar Waterfront",
-                    venue_id="tank_bund",
-                    venue_lat=17.4239,
-                    venue_lon=78.4738,
-                    start_time=sunday.isoformat() + "Z",
-                    end_time=(sunday + timedelta(hours=5)).isoformat() + "Z",
-                    expected_attendance=15000,
-                    crowd_estimate="medium",
-                    source="telangana_tourism",
-                    event_url="https://telanganatourism.gov.in/events/sunday-funday-tank-bund.html"
-                )
-            )
-
-        # 2. Shilparamam Cultural & Handloom Mela (Every weekend Saturday & Sunday at Madhapur)
-        sat_ahead = 5 - now.weekday()
-        if sat_ahead <= 0:
-            sat_ahead += 7
-        for w in range(3):
-            saturday = (now + timedelta(days=sat_ahead + (w * 7))).replace(hour=16, minute=0, second=0, microsecond=0)
-            events.append(
-                _build_event(
-                    name="Shilparamam Crafts & Folk Culture Mela",
-                    event_type="exhibition",
-                    venue_name="Shilparamam Arts & Cultural Village, Madhapur",
-                    venue_id="shilparamam",
-                    venue_lat=17.4521,
-                    venue_lon=78.3712,
-                    start_time=saturday.isoformat() + "Z",
-                    end_time=(saturday + timedelta(hours=6)).isoformat() + "Z",
-                    expected_attendance=6500,
-                    crowd_estimate="medium",
-                    source="telangana_tourism",
-                    event_url="https://in.bookmyshow.com/explore/events-hyderabad?search=shilparamam"
-                )
-            )
-
-        # 3. Ranji Trophy Domestic First-Class Cricket (BCCI Elite Match at Gymkhana Grounds, Secunderabad)
-        # Match days: Oct 11, 12, 13, 14
-        base_match = datetime(now.year, 10, 11, 9, 30, 0)
-        for d_offset in range(4):
-            m_dt = base_match + timedelta(days=d_offset)
-            events.append(
-                _build_event(
-                    name="Ranji Trophy Elite: Hyderabad vs Tripura",
-                    event_type="cricket_international",
-                    venue_name="Gymkhana Cricket Grounds, Secunderabad",
-                    venue_id="gymkhana_grounds",
-                    venue_lat=17.4445,
-                    venue_lon=78.4976,
-                    start_time=m_dt.isoformat() + "Z",
-                    end_time=(m_dt + timedelta(hours=7)).isoformat() + "Z",
-                    expected_attendance=8500,
-                    crowd_estimate="medium",
-                    source="bcci_domestic",
-                    event_url="https://www.bcci.tv/domestic/ranji-trophy-2024-25"
-                )
-            )
-
-        # 4. Brand Land Property & Construction Expo (Hitex Exhibition Centre, HITEC City) - Oct 13 & 14
-        expo_start = datetime(now.year, 10, 13, 10, 0, 0)
-        for d_offset in range(2):
-            e_dt = expo_start + timedelta(days=d_offset)
-            events.append(
-                _build_event(
-                    name="Brand Land Property & Interior Expo",
-                    event_type="exhibition",
-                    venue_name="Hitex Exhibition Centre, HITEC City",
-                    venue_id="hitex",
-                    venue_lat=17.4517,
-                    venue_lon=78.3727,
-                    start_time=e_dt.isoformat() + "Z",
-                    end_time=(e_dt + timedelta(hours=9)).isoformat() + "Z",
-                    expected_attendance=7500,
-                    crowd_estimate="medium",
-                    source="telangana_tourism",
-                    event_url="https://10times.com/hyderabad-in"
-                )
-            )
-
-        # 5. CA Final SICASA Professional Convention (Lakdikapul / Khairatabad) - Oct 13 & 14
-        ca_start = datetime(now.year, 10, 13, 9, 0, 0)
-        for d_offset in range(2):
-            ca_dt = ca_start + timedelta(days=d_offset)
-            events.append(
-                _build_event(
-                    name="ICAI SICASA Professional Convention",
-                    event_type="tech_summit",
-                    venue_name="Visvesvaraya Bhavan, Khairatabad",
-                    venue_id="visvesvaraya_bhavan",
-                    venue_lat=17.4125,
-                    venue_lon=78.4610,
-                    start_time=ca_dt.isoformat() + "Z",
-                    end_time=(ca_dt + timedelta(hours=8)).isoformat() + "Z",
-                    expected_attendance=3500,
-                    crowd_estimate="medium",
-                    source="telangana_tourism",
-                    event_url="https://icai.org"
-                )
-            )
-
-        return events
+        # Do not hallucinate or hardcode unverified schedules.
+        return []
 
 
 # ---------------------------------------------------------------------------
@@ -1011,7 +948,7 @@ class TelanganaTourismScraper:
 class EventAggregator:
     """
     Aggregates events from all scrapers, deduplicates, and normalises them
-    into the common HMR event schema.
+    into the common HMR event schema. Only genuine verified events are used.
     """
 
     def __init__(self) -> None:
@@ -1020,23 +957,20 @@ class EventAggregator:
         self.tourism = TelanganaTourismScraper()
         self.insider = PaytmInsiderScraper()
         self.ipl = IPLScheduleFetcher()
-        self.advisory = TrafficAdvisoryFetcher()
 
     def fetch_all_events(self, city: str = "Hyderabad") -> list[dict[str, Any]]:
         """
-        Fetch events from all sources, deduplicate by (name, start_time), and
+        Fetch events from live verified sources, deduplicate by (name, start_time), and
         return a sorted list of normalised event dicts.
         """
-        logger.info("Fetching events for %s from all sources …", city)
+        logger.info("Fetching real-time verified events for %s …", city)
 
         raw: list[dict[str, Any]] = []
         for scraper_name, scraper_fn in [
             ("allevents", self.allevents.fetch),
-            ("telangana_tourism", self.tourism.fetch),
             ("bookmyshow", self.bms.fetch),
             ("paytm_insider", self.insider.fetch),
-            ("ipl_schedule", self.ipl.fetch),
-            ("traffic_advisory", self.advisory.fetch),
+            ("cricket_live", self.ipl.fetch),
         ]:
             try:
                 results = scraper_fn()
@@ -1047,7 +981,7 @@ class EventAggregator:
 
         deduped = self._deduplicate(raw)
         deduped.sort(key=lambda e: e.get("start_time", ""))
-        logger.info("Total unique events after deduplication: %d", len(deduped))
+        logger.info("Total unique verified events after deduplication: %d", len(deduped))
         return deduped
 
     @staticmethod

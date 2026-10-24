@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { autoOptimize } from '../api/client';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FrequencyTable from '../components/FrequencyTable';
@@ -6,7 +7,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 import {
-  Calendar, ChevronLeft, ChevronRight, RefreshCw, Train, ArrowRight
+  Calendar, ChevronLeft, ChevronRight, RefreshCw, Train, ArrowRight, CalendarClock
 } from 'lucide-react';
 import { getDateOffset, shiftDate, formatDate } from '../utils/dateUtils';
 
@@ -175,6 +176,14 @@ export default function ScheduleView() {
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
           </button>
+
+          <Link
+            to="/metro-schedule"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-xs font-semibold transition shadow-sm"
+          >
+            <CalendarClock className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Terminal Timetable & Next 5</span>
+          </Link>
         </div>
       </div>
 
